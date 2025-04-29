@@ -1,0 +1,12 @@
+@config "../../tailwind.config.cjs";
+@import "tailwindcss";
+
+/* 1 Magenta outline utility */
+@layer utilities {
+  .trim { @apply border border-accent; }        /* 1-px pink border */
+}
+
+/* 2 Paragraph rhythm */
+@layer base {
+  p { margin-bottom: 1rem; line-height: 1.65; }
+}
