@@ -7,10 +7,12 @@ import "../styles/global.css";
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"> <!-- Outfit -->
     </head>
   <body>
+    <!-- centered, padded container -->
+    <div class="px-0 sm:px-0">
     <!-- Header -->
-    <header class="flex items-center justify-between p-4 md:p-6" id="top">
+      <header class="flex gap-2 items-center justify-between md:flex-nowrap p-4 md:p-6" id="top">
       <h1 class="text-lg md:text-xl font-medium hover-accent"><a href="/">Mike Make Game</a></h1>
-      <nav class="space-x-6 text-sm uppercase tracking-wide">
+      <nav class="space-x-2 text-sm uppercase tracking-wide">
         <a href="#top" class="hover-accent">Home</a>
         <a href="#games" class="hover-accent">Games</a>
         <a href="#about" class="hover-accent">About</a>
@@ -26,27 +28,33 @@ import "../styles/global.css";
       <p class="mt-4 text-sm opacity-80">Serious technology. Stupid games.</p>
     </section>
 
+    <hr class="w-full border-0 h-1 md:h-1 bg-accent" />
+
     <!-- Current Games -->
-    <section id="games" class="bg-charcoal py-18 bg-[#1a1a1a] trim text-center">
-      <h2 class="text-3xl font-display mb-4 inline-block px-2">Games</h3>
+    <section id="games" class="bg-charcoal py-18 bg-[#1a1a1a] text-center">
+        <h2 class="text-2xl sm:text-3xl font-display mb-4 inline-block px-2">Games</h2>
       <p class="font-light max-w-3xl mx-auto leading-relaxed">
         Coming&nbsp;Soon&trade;
       </p>
     </section>
 
+    <hr class="w-full border-0 h-1 md:h-1 bg-accent" />
+
     <!-- About -->
     <section id="about" class="bg-background py-12 bg-[#1a1a1a] text-center">
-      <h2 class="text-3xl font-display mb-4 inline-block px-2">About Mike</h3>
-      <p class="font-light max-w-3xl mx-auto leading-relaxed text-left">
+        <h2 class="text-2xl sm:text-3xl font-display mb-4 inline-block px-2">About Mike</h2>
+      <p class="font-light max-w-3xl mx-auto leading-relaxed text-left px-2">
         I've spent the last 15 years in the games industry being a jack of all trades and working with tons of great teams from Firaxis to Gearbox. I've played nearly every class in the games industry, and I enjoyed all of it. After spending a lot of my recent years as tank, healer, and support, I'm jonesing to play some DPS again. I helped everyone else ship their broken messes, and now I'm excited to make my own.
       </p>
-      <p class="font-light max-w-3xl mx-auto leading-relaxed text-left">
+      <p class="font-light max-w-3xl mx-auto leading-relaxed text-left px-2">
         I cut my teeth at Mass Media and learned from 30-year industry veterans, working my way up from baby Junior Engineer to baby Lead Engineer. After getting acquired by 2K I became an Engineering Director and Helldiver in Chief, tackling strategic planning, interdepartmental communication, systems design, and - when things got too fun - heavy-hitting, hands-on engineering into the night.
       </p>
     </section>
 
+    <hr class="w-full border-0 h-1 md:h-1 bg-accent" />
+
     <!-- Credits -->
-    <section id="credits" class="bg-charcoal py-12 trim text-center">
+    <section id="credits" class="bg-charcoal py-12 text-center">
     <h2 class="font-display text-3xl mb-2 inline-block px-3">Credits</h2>
     <h3 class="font-display text-2xl mb-4 px-4">Major</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 px-2 mb-8">
@@ -104,16 +112,19 @@ import "../styles/global.css";
 
     <h3 class="font-display text-2xl mb-4 inline-block px-4">Minor</h3>
 
-    <ul class="columns-2 gap-4 text-sm leading-relaxed px-3">
-        <li>Civilization VI</li><li>Civilization VII</li><li>TopSpin 2K25</li><li>PGA Tour 2K25</li><li>The Quarry</li>
-        <li>New Tales from the Borderlands</li><li>Borderlands series</li><li>BioShock series</li><li>WWE series</li><li>Unannounced 2K Titles</li>
+        <ul class="columns-1 sm:columns-2 gap-4 text-sm leading-relaxed px-3">
+          <li>Civilization&nbsp;VI</li><li>Civilization&nbsp;VII</li><li>TopSpin&nbsp;2K25</li><li>PGA&nbsp;Tour&nbsp;2K25</li>
+          <li>The&nbsp;Quarry</li><li>New&nbsp;Tales&nbsp;from&nbsp;the&nbsp;Borderlands</li><li>Borderlands&nbsp;series</li>
+          <li>BioShock&nbsp;series</li><li>WWE&nbsp;series</li><li>Unannounced&nbsp;2K&nbsp;Titles</li>
     </ul>
     </section>
+
+    <hr class="w-full border-0 h-1 md:h-1 bg-accent" />
 
     <!-- Consulting -->
     <section id="consulting" class="bg-background py-8 text-center">
       <h3 class="text-2xl font-medium mb-6 inline-block px-2">Consulting</h3>
-      <p class="font-light max-w-3xl mx-auto leading-relaxed text-left">
+      <p class="font-light max-w-3xl mx-auto leading-relaxed text-left px-2">
         I've worked on consoles, certification, optimization, system architecture, Unreal Engine (2.5, 3, 4, and 5), proprietary engines, archaic proprietary engines, online services, multiplayer, game feel, leadership, management, growing an engineering team, well-run projects, and absolute dumpster fires. I'm always happy to talk shop whether it's about engineering, people, or project management.
       </p>
       <p class="opacity-75 mb-4">Let's chat.</p>
@@ -125,5 +136,6 @@ import "../styles/global.css";
     <footer class="py-8 text-center text-xs opacity-60">
       &copy; 2025 Mike Make Game - imagery &copy owners
     </footer>
+    </div> <!-- /container -->
   </body>
 </html>
