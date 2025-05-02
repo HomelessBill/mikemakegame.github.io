@@ -10,17 +10,49 @@ import "../styles/global.css";
   <body>
     <!-- centered, padded container -->
     <div class="px-0 sm:px-0">
+
     <!-- Header -->
-      <header class="flex gap-2 items-center justify-between md:flex-nowrap p-4 md:p-6" id="top">
-      <h1 class="text-lg md:text-xl font-medium hover-accent"><a href="/">Mike Make Game</a></h1>
-      <nav class="space-x-2 text-sm uppercase tracking-wide">
-        <a href="#top" class="hover-accent">Home</a>
-        <a href="#games" class="hover-accent">Games</a>
-        <a href="#about" class="hover-accent">About</a>
-        <a href="#credits" class="hover-accent">Credits</a>
+    <header class="relative flex items-center justify-between p-4 md:p-6" id="top">
+      <h1 class="text-lg md:text-xl font-medium hover-accent">
+        <a href="/">Mike Make Game</a>
+      </h1>
+    
+      <!-- Hamburger: only visible <md -->
+  <div class="relative">
+      <button id="menu-toggle" class="md:hidden p-2" aria-label="Toggle menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    
+      <!-- Nav: hidden by default on mobile, absolute dropdown; static and horizontal ≥md -->
+      <nav id="site-nav"
+           class="hidden border border-accent md:border-0 
+                  absolute top-full right-2 -mt-2 w-40
+                  bg-background shadow-lg p-4
+                  flex flex-col gap-4
+                  text-sm uppercase tracking-wide
+                  z-50
+                  md:static md:mt-0 md:w-auto md:bg-transparent md:shadow-none md:p-0 md:flex md:flex-row md:gap-6">
+        <a href="#top"        class="hover-accent">Home</a>
+        <a href="#games"      class="hover-accent">Games</a>
+        <a href="#about"      class="hover-accent">About</a>
+        <a href="#credits"    class="hover-accent">Credits</a>
         <a href="#consulting" class="hover-accent">Consulting</a>
       </nav>
+  </div>
     </header>
+    
+    <script>
+      const btn = document.getElementById('menu-toggle');
+      const nav = document.getElementById('site-nav');
+      btn.addEventListener('click', () => {
+        const isHidden = nav.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isHidden));
+      });
+    </script>
 
     <!-- Hero -->
     <section class="bg-background py-6 text-center">
