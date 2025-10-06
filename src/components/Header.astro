@@ -1,0 +1,92 @@
+---
+const navLinks = [
+  { href: '#content', label: 'Home' },
+  { href: '#games', label: 'Games' },
+  { href: '#consulting', label: 'Consulting' },
+  { href: '#about', label: 'About' },
+  { href: '#credits', label: 'Credits' },
+];
+---
+
+<header role="banner" class="sticky top-0 z-50 flex items-center justify-between p-3 md:p-3 bg-background/95 backdrop-blur border-b border-accent/10">
+  <h1 class="text-lg md:text-xl font-medium hover-accent">
+    <a href="/">Mike Make Game</a>
+  </h1>
+
+  <!-- Hamburger: only visible <md -->
+  <div class="relative">
+    <button id="menu-toggle" class="md:hidden p-2 -mr-2" aria-label="Toggle menu" aria-expanded="false">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Nav: hidden by default on mobile, absolute dropdown; static and horizontal ≥md -->
+    <nav id="site-nav"
+         class="invisible opacity-0 md:visible md:opacity-100
+                absolute top-full right-0 mt-2 w-48
+                bg-background border border-accent/20 shadow-xl rounded-lg p-4
+                flex flex-col gap-3
+                text-sm uppercase tracking-wide
+                transition-all duration-200 ease-out
+                z-50
+                md:static md:mt-0 md:w-auto md:bg-transparent md:border-0 md:shadow-none md:rounded-none md:p-0 md:flex md:flex-row md:gap-6">
+      {navLinks.map(link => (
+        <a href={link.href} class="hover-accent block py-1 md:py-0">{link.label}</a>
+      ))}
+    </nav>
+  </div>
+
+  <script>
+    const btn = document.getElementById('menu-toggle');
+    const nav = document.getElementById('site-nav');
+
+    // Toggle menu with smooth transition
+    btn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = nav?.classList.contains('menu-open');
+
+      if (!isOpen) {
+        nav?.classList.add('menu-open');
+        nav?.classList.remove('invisible', 'opacity-0');
+        nav?.classList.add('visible', 'opacity-100');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        nav?.classList.remove('menu-open');
+        nav?.classList.remove('visible', 'opacity-100');
+        nav?.classList.add('invisible', 'opacity-0');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!nav?.contains(e.target as Node) && !btn?.contains(e.target as Node) && nav?.classList.contains('menu-open')) {
+        nav.classList.remove('menu-open', 'visible', 'opacity-100');
+        nav.classList.add('invisible', 'opacity-0');
+        btn?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu when clicking on a link (mobile only)
+    nav?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          nav.classList.remove('menu-open', 'visible', 'opacity-100');
+          nav.classList.add('invisible', 'opacity-0');
+          btn?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav?.classList.contains('menu-open')) {
+        nav.classList.remove('menu-open', 'visible', 'opacity-100');
+        nav.classList.add('invisible', 'opacity-0');
+        btn?.setAttribute('aria-expanded', 'false');
+        btn?.focus();
+      }
+    });
+  </script>
+</header>

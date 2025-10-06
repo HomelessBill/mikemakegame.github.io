@@ -1,200 +1,122 @@
 ---
-import "../styles/global.css";
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CreditCard from '../components/CreditCard.astro';
+import PageSection from '../components/PageSection.astro';
+import '../styles/global.css';
+
+const majorCredits = [
+  { title: 'Jak and Daxter (PS3)', role: 'Junior Engineer', company: 'Mass Media Games', image: '/credits/jak-daxter.jpg' },
+  { title: 'Evolve', role: 'Engineer', company: 'Mass Media Games', image: '/credits/evolve.jpg' },
+  { title: 'Mafia III', role: 'Engineer', company: 'Mass Media Games', image: '/credits/mafia3.jpg' },
+  { title: 'XCOM 2', role: 'Engineer', company: 'Mass Media Games', image: '/credits/xcom2.jpg' },
+  { title: 'Carnival Games', role: 'Lead Engineer', company: 'Mass Media Games', image: '/credits/carnival.jpg' },
+  { title: 'XCOM: Chimera Squad', role: 'Lead Engineer', company: '2K Games', image: '/credits/chimera.jpg' },
+  { title: 'PGA Tour 2K23', role: 'Engineering Director', company: '2K Games', image: '/credits/pga23.jpg' },
+  { title: "Marvel's Midnight Suns", role: 'Engineering Director', company: '2K Games', image: '/credits/midnight.jpg' },
+  { title: 'LEGO 2K Drive', role: 'Engineering Director', company: '2K Games', image: '/credits/lego-drive.jpg' },
+  { title: 'Project Ethos', role: 'Engineering Director', company: '2K Games', image: '/credits/project-ethos.jpg' },
+];
+
+const minorCredits = [
+  'Civilization VI', 'Civilization VII', 'TopSpin 2K25', 'PGA Tour 2K25',
+  'The Quarry', 'New Tales from the Borderlands', 'Borderlands series',
+  'BioShock series', 'WWE series', 'Unannounced 2K Titles'
+];
 ---
-<html class="bg-background text-foreground font-sans">
-  <head>
-    <meta charset="utf-8">
-    <title>Mike Make Game</title>
-    <meta name="description" content="Company website for Mike Make Game">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      html { scroll-padding-top: 3.5rem; } /* = header height */
-    </style>
 
-    <!-- Preconnects -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<Layout title="Mike Make Game">
+  <Header />
 
-    <!-- Fonts -->
-    <link href="https://api.fontshare.com/v2/css?f[]=chillax@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <main id="content">
+    <!-- Hero -->
+    <PageSection variant="hero" class="text-center py-16 md:py-20">
+      <h2 class="text-xl md:text-2xl mb-4">
+        Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo Buffalo buffalo buffalo.
+      </h2>
+      <p class="text-sm opacity-80">Serious technology. Stupid games.</p>
+    </PageSection>
 
-    <!-- Favicons / Manifest -->
-    <!-- TODO: Add favicon.ico, apple-touch-icon, and site.webmanifest links -->
+    <hr class="w-full border-0 h-px bg-accent/20" />
 
-    <!-- Open Graph / Twitter -->
-    <meta property="og:title" content="Mike Make Game">
-    <meta property="og:description" content="Company website for Mike Make Game">
-    <!-- TODO: <meta property=\"og:image\" content=\"/path/to/og-image.jpg\"> -->
+    <!-- Games -->
+    <PageSection id="games" variant="dark" class="text-center">
+      <h2 class="text-2xl sm:text-3xl font-display mb-6">Games</h2>
+      <p class="font-light max-w-3xl mx-auto">
+        Coming Soon™
+      </p>
+    </PageSection>
 
-    <!-- Scripts -->
-    <script src="/scripts/site.js" defer></script>
-  </head>
+    <hr class="w-full border-0 h-px bg-accent/20" />
 
-  <body>
-    <!-- centered, padded container -->
-    <div class="px-0 sm:px-0">
-
-    <!-- Header -->
-    <header role="banner" class="sticky top-0 z-50 flex items-center justify-between p-3 md:p-3 bg-background/50 backdrop-blur">
-      <h1 class="text-lg md:text-xl font-medium hover-accent">
-        <a href="/">Mike Make Game</a>
-      </h1>
-    
-      <!-- Hamburger: only visible <md -->
-      <div class="relative">
-        <button id="menu-toggle" class="md:hidden p-2" aria-label="Toggle menu" aria-expanded="false">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-               viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      
-        <!-- Nav: hidden by default on mobile, absolute dropdown; static and horizontal ≥md -->
-        <nav id="site-nav"
-             class="hidden border border-accent md:border-0 
-                    absolute top-full right-2 -mt-0 w-40
-                    bg-background shadow-lg p-4
-                    flex flex-col gap-4
-                    text-sm uppercase tracking-wide
-                    z-50
-                    md:static md:mt-0 md:w-auto md:bg-transparent md:shadow-none md:p-0 md:flex md:flex-row md:gap-6">
-          <a href="#content"    class="hover-accent">Home</a>
-          <a href="#games"      class="hover-accent">Games</a>
-          <a href="#consulting" class="hover-accent">Consulting</a>
-          <a href="#about"      class="hover-accent">About</a>
-          <a href="#credits"    class="hover-accent">Credits</a>
-        </nav>
-      </div>
-    
-      <script>
-        const btn = document.getElementById('menu-toggle');
-        const nav = document.getElementById('site-nav');
-        btn.addEventListener('click', () => {
-          const isHidden = nav.classList.toggle('hidden');
-          btn.setAttribute('aria-expanded', String(!isHidden));
-        });
-      </script>
-    </header>
-
-    <main id="content" class="mx-auto">
-      <!-- Hero -->
-      <section class="bg-background py-6 text-center">
-        <h2 class="inline-block px-4 pb-1">Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo Buffalo buffalo buffalo.</h2>
-        <p class="mt-4 text-sm opacity-80">Serious technology. Stupid games.</p>
-      </section>
-  
-      <hr class="w-full border-0 h-0.5 md:h-0.5 bg-accent" />
-  
-      <!-- Current Games -->
-      <section id="games" class="bg-charcoal py-18 bg-[#1a1a1a] text-center">
-        <h2 class="text-2xl sm:text-3xl font-display mb-4 inline-block px-2">Games</h2>
-        <p class="font-light max-w-3xl mx-auto leading-relaxed">
-          Coming&nbsp;Soon&trade;
+    <!-- Consulting -->
+    <PageSection id="consulting" class="text-center">
+      <h2 class="text-2xl sm:text-3xl font-display mb-6">Consulting Services</h2>
+      <div class="max-w-3xl mx-auto">
+        <p class="font-light text-left mb-6">
+          I'm always happy to talk shop whether it's about engineering, people, or project management.
+          I've worked on consoles, certification, optimization, system architecture, Unreal Engine
+          (2.5, 3, 4, and 5), proprietary engines, archaic proprietary engines, online services,
+          multiplayer, game feel, leadership, management, growing an engineering team, well-run projects,
+          absolute dumpster fires, and plenty more.
         </p>
-      </section>
-  
-      <hr class="w-full border-0 h-0.5 md:h-0.5 bg-accent" />
-  
-      <!-- Consulting -->
-      <section id="consulting" class="bg-background py-8 text-center">
-        <h2 class="text-2xl sm:text-3xl font-display mb-4 inline-block px-2">Consulting Services</h2>
-        <p class="font-light max-w-3xl mx-auto leading-relaxed text-left px-2">
-          I'm always happy to talk shop whether it's about engineering, people, or project management. I've worked on consoles, certification, optimization, system architecture, Unreal Engine (2.5, 3, 4, and 5), proprietary engines, archaic proprietary engines, online services, multiplayer, game feel, leadership, management, growing an engineering team, well-run projects, absolute dumpster fires, and plenty more. 
-        </p>
-        <p class="opacity-75 mb-4">Let's chat.</p>
-        <a href="mailto:contact@mikemakegame.com" class="inline-block px-6 py-3 bg-accent-muted text-background rounded hover:bg-accent focus:trim ring-accent">
+        <p class="opacity-75 mb-6">Let's chat.</p>
+        <a href="mailto:contact@mikemakegame.com"
+           class="inline-block px-6 py-3 bg-accent/90 hover:bg-accent text-background rounded-lg transition-colors duration-200">
           Contact
         </a>
-      </section>
-  
-      <hr class="w-full border-0 h-0.5 md:h-0.5 bg-accent" />
-  
-      <!-- About -->
-      <section id="about" class="bg-charcoal py-12 bg-[#1a1a1a] text-center">
-        <h2 class="text-2xl sm:text-3xl font-display mb-4 inline-block px-2">About Mike</h2>
-        <p class="font-light max-w-3xl mx-auto leading-relaxed text-left px-2">
-          I've spent the last 15 years in the games industry being a jack of all trades and working with tons of great teams from Firaxis to Gearbox. I've enjoyed playing nearly every class in the games industry in that time. After spending a lot of my recent years as tank, healer, and support, I'm jonesing to play some DPS again. I helped everyone else ship their broken messes, and now I'm excited to make my own.
-        </p>
-        <p class="font-light max-w-3xl mx-auto leading-relaxed text-left px-2">
-          I cut my teeth at Mass Media Games and learned from a host of 30-year industry veterans, working my way up from the baby Junior Engineer to the baby Lead Engineer. After getting acquired by 2K I became an Engineering Director and Helldiver in Chief, tackling strategic planning, interdepartmental communication, systems design, and - when things got extra fun - hands-on engineering into the late night.
-        </p>
-      </section>
-  
-      <hr class="w-full border-0 h-0.5 md:h-0.5 bg-accent" />
-  
-      <!-- Credits -->
-      <section id="credits" class="bg-background py-12 text-center">
-        <h2 class="font-display text-3xl mb-2 inline-block px-3">Credits</h2>
-        <h3 class="font-display text-2xl mb-4 px-4">Major</h3>
+      </div>
+    </PageSection>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 px-2 mb-8">
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/jak-daxter.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">Jak and Daxter (PS3)</h3>
-            <p class="text-xs opacity-70">Junior Engineer, Mass Media Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/evolve.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">Evolve</h3>
-            <p class="text-xs opacity-70">Engineer, Mass Media Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/mafia3.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">Mafia III</h3>
-            <p class="text-xs opacity-70">Engineer, Mass Media Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/xcom2.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">XCOM 2</h3>
-            <p class="text-xs opacity-70">Engineer, Mass Media Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/carnival.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">Carnival Games</h3>
-            <p class="text-xs opacity-70">Lead Engineer, Mass Media Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/chimera.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">XCOM: Chimera Squad</h3>
-            <p class="text-xs opacity-70">Lead Engineer, 2K Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/pga23.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">PGA Tour 2K23</h3>
-            <p class="text-xs opacity-70">Engineering Director, 2K Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/midnight.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">Marvel's Midnight Suns</h3>
-            <p class="text-xs opacity-70">Engineering Director, 2K Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/lego-drive.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">LEGO 2K Drive</h3>
-            <p class="text-xs opacity-70">Engineering Director, 2K Games</p>
-          </article>
-          <article class="bg-[#222] rounded-md p-4 hover-accent transition-colors">
-            <img src="/credits/project-ethos.jpg" alt="" class="rounded-md mb-4">
-            <h3 class="font-medium">Project Ethos</h3>
-            <p class="text-xs opacity-70">Engineering Director, 2K Games</p>
-          </article>
+    <hr class="w-full border-0 h-px bg-accent/20" />
+
+    <!-- About -->
+    <PageSection id="about" variant="dark">
+      <h2 class="text-2xl sm:text-3xl font-display mb-6 text-center">About Mike</h2>
+      <div class="max-w-3xl mx-auto space-y-4">
+        <p class="font-light">
+          I've spent the last 15 years in the games industry being a jack of all trades and working
+          with tons of great teams from Firaxis to Gearbox. I've enjoyed playing nearly every class
+          in the games industry in that time. After spending a lot of my recent years as tank, healer,
+          and support, I'm jonesing to play some DPS again. I helped everyone else ship their broken
+          messes, and now I'm excited to make my own.
+        </p>
+        <p class="font-light">
+          I cut my teeth at Mass Media Games and learned from a host of 30-year industry veterans,
+          working my way up from the baby Junior Engineer to the baby Lead Engineer. After getting
+          acquired by 2K I became an Engineering Director and Helldiver in Chief, tackling strategic
+          planning, interdepartmental communication, systems design, and - when things got extra fun -
+          hands-on engineering into the late night.
+        </p>
+      </div>
+    </PageSection>
+
+    <hr class="w-full border-0 h-px bg-accent/20" />
+
+    <!-- Credits -->
+    <PageSection id="credits">
+      <h2 class="font-display text-3xl mb-8 text-center">Credits</h2>
+
+      <div class="mb-12">
+        <h3 class="font-display text-2xl mb-6 text-center">Major</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {majorCredits.map(credit => (
+            <CreditCard {...credit} />
+          ))}
         </div>
-    
-        <h3 class="font-display text-2xl mt-4 mb-4 inline-block px-4">Minor</h3>
-    
-        <ul class="columns-1 sm:columns-2 gap-4 text-sm leading-relaxed px-3">
-          <li>Civilization&nbsp;VI</li><li>Civilization&nbsp;VII</li><li>TopSpin&nbsp;2K25</li><li>PGA&nbsp;Tour&nbsp;2K25</li>
-          <li>The&nbsp;Quarry</li><li>New&nbsp;Tales&nbsp;from&nbsp;the&nbsp;Borderlands</li><li>Borderlands&nbsp;series</li>
-          <li>BioShock&nbsp;series</li><li>WWE&nbsp;series</li><li>Unannounced&nbsp;2K&nbsp;Titles</li>
-        </ul>
-      </section>
-    </main>
+      </div>
 
-    <footer class="py-8 text-center text-xs opacity-60">
-      &copy; 2025 Mike Make Game - imagery &copy owners
-    </footer>
-    </div> <!-- /container -->
-  </body>
-</html>
+      <div>
+        <h3 class="font-display text-2xl mb-6 text-center">Minor</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-sm">
+          {minorCredits.map(credit => (
+            <div class="text-center md:text-left">{credit}</div>
+          ))}
+        </div>
+      </div>
+    </PageSection>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,24 @@
+---
+export interface Props {
+  id?: string;
+  variant?: 'default' | 'dark' | 'hero';
+  class?: string;
+}
+
+const { id, variant = 'default', class: className } = Astro.props;
+
+const variantClasses = {
+  default: 'bg-background',
+  dark: 'bg-[#1a1a1a]',
+  hero: 'bg-background'
+};
+
+const baseClasses = 'py-12 px-4 md:px-8';
+const classes = `${baseClasses} ${variantClasses[variant]} ${className || ''}`;
+---
+
+<section id={id} class={classes}>
+  <div class="max-w-6xl mx-auto">
+    <slot />
+  </div>
+</section>
