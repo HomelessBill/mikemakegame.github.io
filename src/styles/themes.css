@@ -94,18 +94,6 @@
   --foreground-muted: 150 150 150;
 }
 
-/* Hacker Theme - Matrix Style */
-[data-theme="hacker"] {
-  --accent: 50 205 50;
-  --accent-muted: 34 139 34;
-  --accent-bright: 124 252 0;
-  --background: 0 0 0;
-  --background-alt: 10 10 10;
-  --charcoal: 10 10 10;
-  --foreground: 50 205 50;
-  --foreground-muted: 34 139 34;
-}
-
 /* Synthwave Theme - 80s Retro */
 [data-theme="synthwave"] {
   --accent: 255 0 128;
@@ -116,6 +104,18 @@
   --charcoal: 40 0 80;
   --foreground: 229 229 229;
   --foreground-muted: 150 150 150;
+}
+
+/* Hacker Theme - Matrix Style */
+[data-theme="hacker"] {
+  --accent: 50 205 50;
+  --accent-muted: 34 139 34;
+  --accent-bright: 124 252 0;
+  --background: 0 0 0;
+  --background-alt: 10 10 10;
+  --charcoal: 10 10 10;
+  --foreground: 50 205 50;
+  --foreground-muted: 34 139 34;
 }
 
 /* Terminal Clean - Green accent, normal text */
@@ -202,46 +202,10 @@
   --foreground-muted: 148 163 184;
 }
 
-/* Laser White Text - Pure white text */
-[data-theme="laser-white-text"] {
-  --accent: 255 0 100;
-  --accent-muted: 200 0 80;
-  --accent-bright: 255 100 150;
-  --background: 20 0 10;
-  --background-alt: 40 0 20;
-  --charcoal: 40 0 20;
-  --foreground: 255 255 255;
-  --foreground-muted: 220 220 220;
-}
-
 /* Laser Original - Pink-tinted text */
 [data-theme="laser-original"] {
   --accent: 255 0 100;
   --accent-muted: 200 0 80;
-  --accent-bright: 255 100 150;
-  --background: 20 0 10;
-  --background-alt: 40 0 20;
-  --charcoal: 40 0 20;
-  --foreground: 255 220 230;
-  --foreground-muted: 255 200 210;
-}
-
-/* Laser Headers - Pink headers, tinted text */
-[data-theme="laser-headers"] {
-  --accent: 255 100 150;
-  --accent-muted: 255 100 150;
-  --accent-bright: 255 100 150;
-  --background: 20 0 10;
-  --background-alt: 40 0 20;
-  --charcoal: 40 0 20;
-  --foreground: 255 220 230;
-  --foreground-muted: 255 200 210;
-}
-
-/* Laser Gradient - Gradient pink headers, tinted text */
-[data-theme="laser-gradient"] {
-  --accent: 255 0 100;
-  --accent-muted: 255 50 125;
   --accent-bright: 255 100 150;
   --background: 20 0 10;
   --background-alt: 40 0 20;
