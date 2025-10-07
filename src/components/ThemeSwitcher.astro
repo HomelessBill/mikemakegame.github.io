@@ -1,20 +1,16 @@
 ---
 const themes = [
   { id: 'default', name: 'Default', icon: '🌸' },
-  { id: 'laser-original', name: 'Laser', icon: '🚨' },
   { id: 'neon', name: 'Neon', icon: '💜' },
   { id: 'arcade', name: 'Arcade', icon: '👾' },
   { id: 'vaporwave', name: 'Vaporwave', icon: '🌴' },
-  { id: 'laser-white-text', name: 'Laser White Text', icon: '⚪' },
-  { id: 'laser-headers', name: 'Laser Headers', icon: '🎯' },
-  { id: 'laser-gradient', name: 'Laser Gradient', icon: '🌈' },
-  { id: 'laser-bright', name: 'Laser Bright', icon: '💖' },
-  { id: 'laser-dark', name: 'Laser Dark', icon: '🌹' },
-  { id: 'laser-neon', name: 'Laser Neon', icon: '🎀' },
-  { id: 'laser-vivid', name: 'Laser Vivid', icon: '💗' },
-  { id: 'laser-hot', name: 'Laser Hot', icon: '🔥' },
-  { id: 'laser-cool', name: 'Laser Cool', icon: '❄️' },
   { id: 'synthwave', name: 'Synthwave', icon: '🌆' },
+  { id: 'laser-bright', name: 'Bubblegum', icon: '💖' },
+  { id: 'laser-dark', name: 'Rosewood', icon: '🌹' },
+  { id: 'laser-neon', name: 'Fuchsia', icon: '🎀' },
+  { id: 'laser-vivid', name: 'Magenta', icon: '💗' },
+  { id: 'laser-hot', name: 'Crimson', icon: '🔥' },
+  { id: 'laser-cool', name: 'Orchid', icon: '❄️' },
 ];
 ---
 
@@ -45,7 +41,7 @@ const themes = [
 
   <div
     id="theme-menu"
-    class="hidden absolute bottom-full mb-2 right-0 bg-background/95 backdrop-blur border border-accent/30 rounded-lg p-2 min-w-[150px] max-h-[400px] overflow-y-auto"
+    class="hidden absolute bottom-full mb-2 right-0 bg-background/95 backdrop-blur border border-accent/30 rounded-lg p-2 min-w-[150px] max-h-[450px] overflow-y-auto"
   >
     <div class="text-xs uppercase tracking-wider text-foreground-muted mb-2 px-2">Themes</div>
     {themes.map(theme => (
