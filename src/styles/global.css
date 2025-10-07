@@ -1,5 +1,6 @@
 @config "../../tailwind.config.cjs";
 @import "tailwindcss";
+@import "./themes.css";
 
 /* 1 Magenta outline utility */
 @layer utilities {
@@ -10,4 +11,32 @@
 /* 2 Paragraph rhythm */
 @layer base {
   p { margin-bottom: 1rem; line-height: 1.65; }
+}
+
+/* Special heading colors for Laser Headers theme */
+[data-theme="laser-headers"] h1,
+[data-theme="laser-headers"] h2,
+[data-theme="laser-headers"] h3,
+[data-theme="laser-headers"] h4,
+[data-theme="laser-headers"] .font-display {
+  color: rgb(255 100 150);
+}
+
+/* Gradient heading colors for Laser Gradient theme */
+[data-theme="laser-gradient"] h1,
+[data-theme="laser-gradient"] .text-4xl {
+  color: rgb(255 0 100);
+}
+[data-theme="laser-gradient"] h2,
+[data-theme="laser-gradient"] .text-3xl {
+  color: rgb(255 50 125);
+}
+[data-theme="laser-gradient"] h3,
+[data-theme="laser-gradient"] .text-2xl {
+  color: rgb(255 75 138);
+}
+[data-theme="laser-gradient"] h4,
+[data-theme="laser-gradient"] .text-xl,
+[data-theme="laser-gradient"] .text-lg {
+  color: rgb(255 100 150);
 }

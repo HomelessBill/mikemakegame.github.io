@@ -1,0 +1,113 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+  placeholder?: 'blur' | 'skeleton';
+}
+
+const { src, alt, class: className = '', width, height, placeholder = 'skeleton' } = Astro.props;
+
+// Generate a unique ID for this image instance
+const imageId = `lazy-img-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`lazy-image-wrapper relative ${className}`} data-image-id={imageId}>
+  <!-- Placeholder -->
+  <div class="lazy-placeholder absolute inset-0 bg-background-alt animate-pulse rounded-md"></div>
+
+  <!-- Actual image -->
+  <img
+    data-src={src}
+    alt={alt}
+    class={`lazy-image opacity-0 transition-opacity duration-500 ${className}`}
+    width={width}
+    height={height}
+  />
+</div>
+
+<style>
+  .lazy-image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lazy-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .lazy-image.loaded {
+    opacity: 1;
+  }
+
+  .lazy-placeholder.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  // Only initialize once
+  if (!window.lazyImageObserver) {
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const wrapper = entry.target;
+            const img = wrapper.querySelector('.lazy-image') as HTMLImageElement;
+            const placeholder = wrapper.querySelector('.lazy-placeholder');
+
+            if (img && img.dataset.src) {
+              // Create new image to preload
+              const tempImg = new Image();
+              tempImg.onload = () => {
+                // Set the actual source
+                img.src = img.dataset.src;
+                img.classList.add('loaded');
+
+                // Hide placeholder after image loads
+                setTimeout(() => {
+                  placeholder?.classList.add('hidden');
+                }, 50);
+
+                // Stop observing this image
+                observer.unobserve(wrapper);
+              };
+
+              // Start loading
+              tempImg.src = img.dataset.src;
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '50px 0px', // Start loading 50px before entering viewport
+        threshold: 0.01
+      }
+    );
+
+    window.lazyImageObserver = imageObserver;
+  }
+
+  // Observe all lazy images on the page
+  document.addEventListener('DOMContentLoaded', () => {
+    const lazyImages = document.querySelectorAll('.lazy-image-wrapper');
+    lazyImages.forEach(wrapper => {
+      window.lazyImageObserver.observe(wrapper);
+    });
+  });
+
+  // Re-observe new images added dynamically
+  document.addEventListener('astro:page-load', () => {
+    const lazyImages = document.querySelectorAll('.lazy-image-wrapper');
+    lazyImages.forEach(wrapper => {
+      if (!wrapper.querySelector('.lazy-image.loaded')) {
+        window.lazyImageObserver.observe(wrapper);
+      }
+    });
+  });
+</script>

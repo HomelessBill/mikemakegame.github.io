@@ -1,48 +1,118 @@
-# Astro Starter Kit: Basics
+# Mike Make Game Website
 
-```sh
-npm create astro@latest -- --template basics
+Company website for Mike Make Game - an engineering-first game studio and consulting service.
+
+## Tech Stack
+- **Framework**: Astro
+- **Styling**: Tailwind CSS v4
+- **Deployment**: GitHub Pages
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## TODO List
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Mike's Remaining Asset Tasks
+- [ ] **Bricknosis Assets** (Priority: HIGH)
+  - [ ] Get YouTube or Steam trailer embed URL
+  - [ ] Capture 4-6 screenshots (16:9 aspect ratio, 1280x720 minimum)
+  - [ ] Optional: Create Bricknosis logo/header image to replace text title
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- [ ] **Logo Optimization** (Priority: MEDIUM)
+  - [ ] Optimize PNG logos while preserving transparency
+  - [ ] Create favicon from icon (16x16, 32x32, 192x192)
 
-## 🚀 Project Structure
+- [ ] **Platform Logos** (Priority: LOW)
+  - [ ] Gather platform logos for Consulting section (PlayStation, Xbox, Steam, Unreal, etc.)
 
-Inside of your Astro project, you'll see the following folders and files:
+### Today's Completed Updates
+- [x] **Image Optimization** - All game images optimized (98% size reduction!)
+  - [x] Credit cards: All under 60KB (from 20MB total to 365KB)
+  - [x] Hero banners: Created at 1920x600px, all under 261KB
+  - [x] Auto-optimization script created using Sharp
+- [x] **Bricknosis Content** - Updated with real game copy and features
+- [x] **Consulting Services** - Side-by-side layout with expertise bullets
+- [x] **Platform logo placeholders** - Grid layout ready for real logos
+- [x] **Multi-paragraph support** - GameCard now handles paragraph breaks
 
-```text
+### Recent Updates
+- [x] Laser theme as default with 8 variants
+- [x] Bricknosis game section with 60/40 trailer/description layout
+- [x] Steam button with official SVG branding
+- [x] Header with split logo (icon + text)
+- [x] Enhanced hero text drop shadow (stronger readability)
+
+### Upcoming Features
+- [ ] Add professional headshot to About section
+- [ ] Add LinkedIn link
+- [ ] Add favicon and touch icons
+- [ ] Add Open Graph image for social sharing
+- [ ] Implement trailer embed when available
+- [ ] Add real screenshots when ready
+
+### Future Optimizations
+- [ ] Set up automated image processing with Sharp
+- [ ] Add WebP format with JPG fallback
+- [ ] Implement proper SEO meta tags
+- [ ] Add structured data for Google
+- [ ] Set up analytics
+- [ ] Performance audit and optimization
+- [ ] Cross-browser testing
+- [ ] Accessibility audit
+
+### Completed
+- [x] Fix hamburger menu on mobile
+- [x] Restructure with Astro components
+- [x] Theme system with Laser variations
+- [x] Fix section dividers
+- [x] Add credit card images
+- [x] Remove duplicate headings
+- [x] Update release date and Steam link
+
+## Image Guidelines
+
+### Credit Cards
+- **Dimensions**: 600x340px (16:9 ratio)
+- **Format**: JPG
+- **Quality**: 80-85%
+- **Max size**: 100KB
+
+### Hero Banners
+- **Dimensions**: 1920x600px (or 1920x480px for more compact)
+- **Format**: JPG
+- **Quality**: 85%
+- **Max size**: 200KB
+- **Focus**: Center-crop with key artwork visible
+
+## Directory Structure
+
+```
 /
-├── public/
-│   └── favicon.svg
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/     # Reusable Astro components
+│   ├── layouts/        # Page layouts
+│   ├── pages/          # Page files (routes)
+│   └── styles/         # CSS and theme files
+├── public/
+│   ├── credits/        # Game credit images
+│   └── hero/           # Hero banner images (to be created)
+├── SourceArt/          # Original high-res images
+└── dist/               # Build output
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Deployment
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Site automatically deploys to GitHub Pages when pushing to main branch.

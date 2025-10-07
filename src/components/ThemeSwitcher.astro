@@ -1,0 +1,169 @@
+---
+const themes = [
+  { id: 'default', name: 'Laser', icon: '🚨' },
+  { id: 'neon', name: 'Neon', icon: '💜' },
+  { id: 'arcade', name: 'Arcade', icon: '👾' },
+  { id: 'vaporwave', name: 'Vaporwave', icon: '🌴' },
+  { id: 'laser-white-text', name: 'Laser White Text', icon: '⚪' },
+  { id: 'laser-headers', name: 'Laser Headers', icon: '🎯' },
+  { id: 'laser-gradient', name: 'Laser Gradient', icon: '🌈' },
+  { id: 'laser-bright', name: 'Laser Bright', icon: '💖' },
+  { id: 'laser-dark', name: 'Laser Dark', icon: '🌹' },
+  { id: 'laser-neon', name: 'Laser Neon', icon: '🎀' },
+  { id: 'laser-vivid', name: 'Laser Vivid', icon: '💗' },
+  { id: 'laser-hot', name: 'Laser Hot', icon: '🔥' },
+  { id: 'laser-cool', name: 'Laser Cool', icon: '❄️' },
+  { id: 'synthwave', name: 'Synthwave', icon: '🌆' },
+];
+---
+
+<div class="fixed bottom-4 right-4 z-50 flex gap-2 items-end">
+  <!-- A/B Swap button -->
+  <button
+    id="theme-swap"
+    class="bg-background/90 backdrop-blur border border-accent/30 rounded-lg p-3 hover:border-accent transition-colors"
+    aria-label="Swap between last two themes"
+    title="Swap themes (A/B)"
+  >
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M8 5a1 1 0 100 2V5zM6 8a1 1 0 000 2h2a1 1 0 100-2H6zM5 11a2 2 0 012-2h6a2 2 0 012 2v2a2 2 0 01-2 2H7a2 2 0 01-2-2v-2z"/>
+      <path d="M4.707 3.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L6 4.586 4.707 3.293zm10 10a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L14 15.414l1.293 1.293a1 1 0 001.414-1.414l-2-2z"/>
+    </svg>
+  </button>
+
+  <!-- Theme menu button -->
+  <button
+    id="theme-toggle"
+    class="bg-background/90 backdrop-blur border border-accent/30 rounded-lg p-3 hover:border-accent transition-colors"
+    aria-label="Toggle theme menu"
+  >
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+    </svg>
+  </button>
+
+  <div
+    id="theme-menu"
+    class="hidden absolute bottom-full mb-2 right-0 bg-background/95 backdrop-blur border border-accent/30 rounded-lg p-2 min-w-[150px] max-h-[400px] overflow-y-auto"
+  >
+    <div class="text-xs uppercase tracking-wider text-foreground-muted mb-2 px-2">Themes</div>
+    {themes.map(theme => (
+      <button
+        data-theme-select={theme.id}
+        class="w-full text-left px-3 py-2 rounded hover:bg-accent/10 transition-colors flex items-center gap-2 text-sm"
+      >
+        <span>{theme.icon}</span>
+        <span>{theme.name}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Theme management
+  const STORAGE_KEY = 'mmg-theme';
+  const HISTORY_KEY = 'mmg-theme-history';
+  const toggle = document.getElementById('theme-toggle');
+  const swapBtn = document.getElementById('theme-swap');
+  const menu = document.getElementById('theme-menu');
+  const root = document.documentElement;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem(STORAGE_KEY);
+  if (savedTheme && savedTheme !== 'default') {
+    root.setAttribute('data-theme', savedTheme);
+  }
+
+  // Load theme history
+  let themeHistory = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+  if (themeHistory.length === 0) {
+    themeHistory = [savedTheme || 'default'];
+  }
+
+  // Toggle menu
+  toggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu?.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', () => {
+    menu?.classList.add('hidden');
+  });
+
+  // Theme selection
+  document.querySelectorAll('[data-theme-select]').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const theme = (e.currentTarget as HTMLElement).dataset.themeSelect;
+      const currentTheme = root.getAttribute('data-theme') || 'default';
+
+      // Add current theme to history before switching
+      if (!themeHistory.includes(currentTheme)) {
+        themeHistory.push(currentTheme);
+      }
+      // Keep only last 2 unique themes
+      if (themeHistory.length > 2) {
+        themeHistory = themeHistory.slice(-2);
+      }
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(themeHistory));
+
+      if (theme === 'default') {
+        root.removeAttribute('data-theme');
+        localStorage.removeItem(STORAGE_KEY);
+      } else {
+        root.setAttribute('data-theme', theme!);
+        localStorage.setItem(STORAGE_KEY, theme!);
+      }
+
+      // Add new theme to history
+      if (!themeHistory.includes(theme!)) {
+        themeHistory.push(theme!);
+      }
+      if (themeHistory.length > 2) {
+        themeHistory = themeHistory.slice(-2);
+      }
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(themeHistory));
+
+      menu?.classList.add('hidden');
+    });
+  });
+
+  // Swap between last two themes
+  swapBtn?.addEventListener('click', () => {
+    const currentTheme = root.getAttribute('data-theme') || 'default';
+
+    // Find the other theme in history
+    let swapToTheme = themeHistory.find(t => t !== currentTheme);
+
+    // If no other theme in history, just toggle between current and default
+    if (!swapToTheme) {
+      swapToTheme = currentTheme === 'default' ? 'laser-contrast' : 'default';
+    }
+
+    // Apply the swap theme
+    if (swapToTheme === 'default') {
+      root.removeAttribute('data-theme');
+      localStorage.removeItem(STORAGE_KEY);
+    } else {
+      root.setAttribute('data-theme', swapToTheme);
+      localStorage.setItem(STORAGE_KEY, swapToTheme);
+    }
+
+    // Update history
+    if (!themeHistory.includes(swapToTheme)) {
+      themeHistory.push(swapToTheme);
+    }
+    if (themeHistory.length > 2) {
+      themeHistory = themeHistory.slice(-2);
+    }
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(themeHistory));
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      menu?.classList.add('hidden');
+    }
+  });
+</script>

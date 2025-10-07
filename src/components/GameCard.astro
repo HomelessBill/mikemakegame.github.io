@@ -1,0 +1,145 @@
+---
+export interface Props {
+  title: string;
+  subtitle?: string;
+  status?: 'coming-soon' | 'early-access' | 'released';
+  releaseInfo?: string;
+  steamUrl?: string;
+  trailer?: string;
+  description?: string;
+  features?: string[];
+  screenshots?: string[];
+  coverImage?: string;
+}
+
+const {
+  title,
+  subtitle = '',
+  status = 'coming-soon',
+  releaseInfo,
+  steamUrl,
+  trailer,
+  description,
+  features = [],
+  screenshots = [],
+  coverImage
+} = Astro.props;
+
+const statusBadges = {
+  'coming-soon': 'Coming Soon',
+  'early-access': 'Early Access',
+  'released': 'Available Now'
+};
+---
+
+<div class="game-card">
+  <!-- Header with title and status -->
+  <div class="mb-8 text-center">
+    <h3 class="text-3xl md:text-4xl font-display mb-3">{title}</h3>
+    {subtitle && <p class="text-xl text-foreground-muted mb-4">{subtitle}</p>}
+
+    <div class="flex flex-wrap gap-3 justify-center items-center mb-2">
+      {steamUrl && (
+        <a
+          href={steamUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-accent/90 hover:bg-accent text-background rounded-lg transition-colors duration-200 font-bold"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 256 259" fill="currentColor">
+            <path d="M127.779 0C60.42 0 5.24 52.412 0 119.014l68.724 28.674a35.812 35.812 0 0 1 20.426-6.366c.682 0 1.356.019 2.02.056l30.566-44.71v-.626c0-26.903 21.69-48.796 48.353-48.796 26.662 0 48.352 21.893 48.352 48.796 0 26.902-21.69 48.804-48.352 48.804-.37 0-.73-.009-1.098-.018l-43.593 31.377c.028.582.046 1.163.046 1.735 0 20.204-16.283 36.636-36.294 36.636-17.566 0-32.263-12.658-35.584-29.412L4.41 163.646c11.328 54.137 59.307 94.806 116.313 94.806 65.4 0 118.778-53.515 118.778-119.207C239.51 61.756 193.749 0 127.779 0zM80.352 196.332l-15.749-6.568c2.787 5.867 7.621 10.775 14.033 13.47 13.857 5.83 29.836-.803 35.612-14.799a27.555 27.555 0 0 0 .046-21.035c-2.768-6.79-7.999-12.086-14.706-14.909-6.67-2.795-13.811-2.694-20.085-.304l16.275 6.79c10.222 4.3 15.056 16.145 10.794 26.461-4.253 10.314-15.998 15.195-26.22 10.894zm89.741-101.48c0-17.925-14.457-32.52-32.217-32.52-17.769 0-32.226 14.595-32.226 32.52 0 17.926 14.457 32.512 32.226 32.512 17.76 0 32.217-14.586 32.217-32.512zm-56.37-.008c0-13.47 10.84-24.43 24.153-24.43 13.304 0 24.144 10.96 24.144 24.43 0 13.468-10.84 24.418-24.144 24.418-13.313 0-24.153-10.95-24.153-24.418z"/>
+          </svg>
+          Follow and Wishlist on Steam
+        </a>
+      )}
+    </div>
+
+    {releaseInfo && (
+      <p class="text-sm text-foreground-muted mt-2">{releaseInfo}</p>
+    )}
+  </div>
+
+  <!-- Main content area - Side by side on desktop, stacked on mobile -->
+  <div class="grid md:grid-cols-5 gap-8 mb-8">
+    <!-- Trailer - 60% width on desktop -->
+    <div class="md:col-span-3">
+      <div class="aspect-video bg-background-alt rounded-lg overflow-hidden border border-accent/20">
+        {trailer ? (
+          <iframe
+            src={trailer}
+            class="w-full h-full"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        ) : (
+          <div class="w-full h-full flex items-center justify-center text-foreground-muted">
+            <div class="text-center">
+              <svg class="w-16 h-16 mx-auto mb-2 opacity-50" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+              </svg>
+              <p class="text-sm">Trailer Coming Soon</p>
+              <p class="text-xs opacity-50 mt-1">Placeholder for YouTube/Steam embed</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Description and Features - 40% width on desktop -->
+    <div class="md:col-span-2 space-y-6">
+      {description && (
+        <div>
+          <h4 class="text-lg font-display mb-3 text-accent-bright">About</h4>
+          <div class="text-foreground-muted leading-relaxed text-sm space-y-3">
+            {description.split('\n\n').map(paragraph =>
+              paragraph.trim() && <p>{paragraph.trim()}</p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {features.length > 0 && (
+        <div>
+          <h4 class="text-lg font-display mb-3 text-accent-bright">Key Features</h4>
+          <ul class="space-y-2">
+            {features.map(feature => (
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span class="text-foreground-muted">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Screenshots Gallery - Full width below -->
+  <div class="space-y-4">
+    <h4 class="text-lg font-display text-accent-bright">Screenshots</h4>
+    {screenshots.length > 0 ? (
+      <div class="overflow-x-auto pb-2 -mx-4 px-4">
+        <div class="flex gap-4">
+          {screenshots.map((screenshot, i) => (
+            <div class="flex-none w-64 md:w-80">
+              <img
+                src={screenshot}
+                alt={`${title} screenshot ${i + 1}`}
+                class="rounded-lg w-full h-full object-cover border border-accent/20"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[1, 2, 3, 4].map((i) => (
+          <div class="aspect-video bg-background-alt rounded-lg border border-accent/20 flex items-center justify-center">
+            <span class="text-xs text-foreground-muted opacity-50">Screenshot {i}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>

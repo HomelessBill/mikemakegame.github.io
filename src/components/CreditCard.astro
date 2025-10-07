@@ -1,4 +1,6 @@
 ---
+import LazyImage from './LazyImage.astro';
+
 export interface Props {
   title: string;
   role: string;
@@ -9,15 +11,18 @@ export interface Props {
 const { title, role, company, image } = Astro.props;
 ---
 
-<article class="bg-[#222] rounded-lg p-4 hover:bg-[#2a2a2a] transition-all duration-200 transform hover:-translate-y-1 hover:shadow-xl">
+<article class="bg-[#222] rounded-lg p-4 hover:bg-[#2a2a2a] transition-all duration-200 transform hover:-translate-y-1 hover:shadow-xl group">
   <div class="aspect-video bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] rounded-md mb-4 overflow-hidden relative">
     {image ? (
-      <img
-        src={image}
-        alt={`${title} game cover`}
-        class="w-full h-full object-cover"
-        loading="lazy"
-      />
+      <>
+        <LazyImage
+          src={image}
+          alt={`${title} game cover`}
+          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+        />
+        <!-- Gradient overlay for better text readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+      </>
     ) : (
       <div class="w-full h-full flex items-center justify-center">
         <span class="text-accent/30 text-xs uppercase tracking-wider">Coming Soon</span>

@@ -4,11 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: '#ff00ff',        // Debug Magenta
-        'accent-muted': '#e600e6',
-        charcoal:  '#1a1a1a',     // alt band
-        background:'#111111',     // main canvas
-        foreground:'#e5e5e5',
+        accent: 'rgb(var(--accent) / <alpha-value>)',
+        'accent-muted': 'rgb(var(--accent-muted) / <alpha-value>)',
+        'accent-bright': 'rgb(var(--accent-bright) / <alpha-value>)',
+        charcoal:  'rgb(var(--charcoal) / <alpha-value>)',
+        background:'rgb(var(--background) / <alpha-value>)',
+        'background-alt': 'rgb(var(--background-alt) / <alpha-value>)',
+        foreground:'rgb(var(--foreground) / <alpha-value>)',
+        'foreground-muted': 'rgb(var(--foreground-muted) / <alpha-value>)',
       },
       fontFamily: {
         display: ['"Chillax"', 'sans-serif'],

@@ -1,0 +1,371 @@
+/* Default Theme - Laser */
+:root {
+  --accent: 255 0 100;
+  --accent-muted: 200 0 80;
+  --accent-bright: 255 100 150;
+  --background: 20 0 10;
+  --background-alt: 40 0 20;
+  --charcoal: 40 0 20;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Neon Theme - Original default */
+[data-theme="neon"] {
+  --accent: 255 0 255;
+  --accent-muted: 200 0 200;
+  --accent-bright: 0 255 255;
+  --background: 10 0 20;
+  --background-alt: 20 0 40;
+  --charcoal: 20 0 40;
+  --foreground: 255 255 255;
+  --foreground-muted: 200 100 255;
+}
+
+/* Debug Theme - Original Magenta */
+[data-theme="debug"] {
+  --accent: 255 0 255;
+  --accent-muted: 230 0 230;
+  --accent-bright: 255 100 255;
+  --background: 17 17 17;
+  --background-alt: 26 26 26;
+  --charcoal: 26 26 26;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Terminal Theme - Classic Green */
+[data-theme="terminal"] {
+  --accent: 0 255 0;
+  --accent-muted: 0 200 0;
+  --accent-bright: 100 255 100;
+  --background: 10 10 10;
+  --background-alt: 20 20 20;
+  --charcoal: 15 20 15;
+  --foreground: 0 255 0;
+  --foreground-muted: 0 150 0;
+}
+
+/* Blueprint Theme - Technical Blue */
+[data-theme="blueprint"] {
+  --accent: 0 162 255;
+  --accent-muted: 0 122 200;
+  --accent-bright: 100 200 255;
+  --background: 13 17 23;
+  --background-alt: 22 27 34;
+  --charcoal: 22 27 34;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Forge Theme - Industrial Orange */
+[data-theme="forge"] {
+  --accent: 255 107 53;
+  --accent-muted: 200 80 40;
+  --accent-bright: 255 150 100;
+  --background: 10 10 10;
+  --background-alt: 26 26 26;
+  --charcoal: 30 20 20;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Cyberpunk Theme - Neon Cyan/Magenta */
+[data-theme="cyberpunk"] {
+  --accent: 0 255 255;
+  --accent-muted: 0 200 200;
+  --accent-bright: 255 0 255;
+  --background: 10 10 10;
+  --background-alt: 20 20 30;
+  --charcoal: 20 20 30;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Monochrome Theme - Clean with Yellow Pop */
+[data-theme="monochrome"] {
+  --accent: 255 235 59;
+  --accent-muted: 220 200 50;
+  --accent-bright: 255 255 100;
+  --background: 15 15 15;
+  --background-alt: 30 30 30;
+  --charcoal: 30 30 30;
+  --foreground: 245 245 245;
+  --foreground-muted: 150 150 150;
+}
+
+/* Hacker Theme - Matrix Style */
+[data-theme="hacker"] {
+  --accent: 50 205 50;
+  --accent-muted: 34 139 34;
+  --accent-bright: 124 252 0;
+  --background: 0 0 0;
+  --background-alt: 10 10 10;
+  --charcoal: 10 10 10;
+  --foreground: 50 205 50;
+  --foreground-muted: 34 139 34;
+}
+
+/* Synthwave Theme - 80s Retro */
+[data-theme="synthwave"] {
+  --accent: 255 0 128;
+  --accent-muted: 200 0 100;
+  --accent-bright: 255 100 255;
+  --background: 25 0 51;
+  --background-alt: 40 0 80;
+  --charcoal: 40 0 80;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Terminal Clean - Green accent, normal text */
+[data-theme="terminal-clean"] {
+  --accent: 0 255 0;
+  --accent-muted: 0 200 0;
+  --accent-bright: 100 255 100;
+  --background: 10 10 10;
+  --background-alt: 20 20 20;
+  --charcoal: 15 20 15;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Ocean Deep - Blue coordinated backgrounds */
+[data-theme="ocean"] {
+  --accent: 0 200 255;
+  --accent-muted: 0 150 200;
+  --accent-bright: 100 230 255;
+  --background: 10 25 35;
+  --background-alt: 15 35 50;
+  --charcoal: 15 35 50;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 170 190;
+}
+
+/* Emerald - Green coordinated backgrounds */
+[data-theme="emerald"] {
+  --accent: 16 185 129;
+  --accent-muted: 5 150 105;
+  --accent-bright: 52 211 153;
+  --background: 10 20 18;
+  --background-alt: 15 30 25;
+  --charcoal: 15 30 25;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Crimson - Red coordinated backgrounds */
+[data-theme="crimson"] {
+  --accent: 239 68 68;
+  --accent-muted: 185 28 28;
+  --accent-bright: 248 113 113;
+  --background: 20 10 10;
+  --background-alt: 35 15 15;
+  --charcoal: 35 15 15;
+  --foreground: 229 229 229;
+  --foreground-muted: 150 150 150;
+}
+
+/* Violet Dream - Purple coordinated backgrounds */
+[data-theme="violet"] {
+  --accent: 167 139 250;
+  --accent-muted: 139 92 246;
+  --accent-bright: 196 181 253;
+  --background: 20 15 35;
+  --background-alt: 30 20 50;
+  --charcoal: 30 20 50;
+  --foreground: 229 229 229;
+  --foreground-muted: 180 170 200;
+}
+
+/* Neon Nights - Bold like Cyberpunk */
+[data-theme="neon"] {
+  --accent: 255 0 255;
+  --accent-muted: 200 0 200;
+  --accent-bright: 0 255 255;
+  --background: 10 0 20;
+  --background-alt: 20 0 40;
+  --charcoal: 20 0 40;
+  --foreground: 255 255 255;
+  --foreground-muted: 200 100 255;
+}
+
+/* Electric Blue - Bold and vibrant */
+[data-theme="electric"] {
+  --accent: 59 130 246;
+  --accent-muted: 37 99 235;
+  --accent-bright: 147 197 253;
+  --background: 15 23 42;
+  --background-alt: 30 41 59;
+  --charcoal: 30 41 59;
+  --foreground: 226 232 240;
+  --foreground-muted: 148 163 184;
+}
+
+/* Laser White Text - Pure white text */
+[data-theme="laser-white-text"] {
+  --accent: 255 0 100;
+  --accent-muted: 200 0 80;
+  --accent-bright: 255 100 150;
+  --background: 20 0 10;
+  --background-alt: 40 0 20;
+  --charcoal: 40 0 20;
+  --foreground: 255 255 255;
+  --foreground-muted: 220 220 220;
+}
+
+/* Laser Headers - Pink headers, tinted text */
+[data-theme="laser-headers"] {
+  --accent: 255 100 150;
+  --accent-muted: 255 100 150;
+  --accent-bright: 255 100 150;
+  --background: 20 0 10;
+  --background-alt: 40 0 20;
+  --charcoal: 40 0 20;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Laser Gradient - Gradient pink headers, tinted text */
+[data-theme="laser-gradient"] {
+  --accent: 255 0 100;
+  --accent-muted: 255 50 125;
+  --accent-bright: 255 100 150;
+  --background: 20 0 10;
+  --background-alt: 40 0 20;
+  --charcoal: 40 0 20;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Laser Bright - Higher contrast, brighter backgrounds */
+[data-theme="laser-bright"] {
+  --accent: 255 0 100;
+  --accent-muted: 220 0 90;
+  --accent-bright: 255 120 180;
+  --background: 30 5 15;
+  --background-alt: 50 10 25;
+  --charcoal: 50 10 25;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Laser Dark - Deep contrast, darker backgrounds */
+[data-theme="laser-dark"] {
+  --accent: 255 20 120;
+  --accent-muted: 180 0 70;
+  --accent-bright: 255 80 160;
+  --background: 10 0 5;
+  --background-alt: 25 0 12;
+  --charcoal: 25 0 12;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Laser Neon - Ultra vibrant, high saturation */
+[data-theme="laser-neon"] {
+  --accent: 255 0 128;
+  --accent-muted: 255 0 100;
+  --accent-bright: 255 50 200;
+  --background: 15 0 15;
+  --background-alt: 35 0 35;
+  --charcoal: 35 0 35;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Laser Vivid - Enhanced contrast with cooler tones */
+[data-theme="laser-vivid"] {
+  --accent: 255 0 110;
+  --accent-muted: 200 0 85;
+  --accent-bright: 255 100 200;
+  --background: 12 0 8;
+  --background-alt: 30 5 20;
+  --charcoal: 30 5 20;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Laser Hot - Warmer red tones */
+[data-theme="laser-hot"] {
+  --accent: 255 30 80;
+  --accent-muted: 200 20 60;
+  --accent-bright: 255 100 130;
+  --background: 20 5 5;
+  --background-alt: 40 10 10;
+  --charcoal: 40 10 10;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Laser Cool - Blue-shifted pink */
+[data-theme="laser-cool"] {
+  --accent: 255 0 150;
+  --accent-muted: 200 0 120;
+  --accent-bright: 255 100 255;
+  --background: 15 0 20;
+  --background-alt: 30 0 40;
+  --charcoal: 30 0 40;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
+}
+
+/* Toxic - Bold green/yellow */
+[data-theme="toxic"] {
+  --accent: 132 204 22;
+  --accent-muted: 101 163 13;
+  --accent-bright: 190 242 100;
+  --background: 10 15 5;
+  --background-alt: 20 30 10;
+  --charcoal: 20 30 10;
+  --foreground: 240 255 220;
+  --foreground-muted: 180 200 150;
+}
+
+/* Vaporwave - Classic pink/purple/cyan */
+[data-theme="vaporwave"] {
+  --accent: 255 0 193;
+  --accent-muted: 150 0 255;
+  --accent-bright: 0 255 249;
+  --background: 15 0 30;
+  --background-alt: 30 0 60;
+  --charcoal: 30 0 60;
+  --foreground: 255 255 255;
+  --foreground-muted: 200 150 255;
+}
+
+/* Miami Vice - Hot pink and aqua */
+[data-theme="miami"] {
+  --accent: 255 113 206;
+  --accent-muted: 1 205 254;
+  --accent-bright: 5 255 161;
+  --background: 20 10 30;
+  --background-alt: 40 20 50;
+  --charcoal: 40 20 50;
+  --foreground: 255 240 250;
+  --foreground-muted: 200 180 220;
+}
+
+/* Arcade - Deep purple and bright blue */
+[data-theme="arcade"] {
+  --accent: 119 68 255;
+  --accent-muted: 73 0 255;
+  --accent-bright: 51 255 255;
+  --background: 10 5 25;
+  --background-alt: 20 10 40;
+  --charcoal: 20 10 40;
+  --foreground: 240 240 255;
+  --foreground-muted: 180 160 220;
+}
+
+/* Plasma - Blue to purple gradient feel */
+[data-theme="plasma"] {
+  --accent: 185 103 255;
+  --accent-muted: 143 140 242;
+  --accent-bright: 249 108 255;
+  --background: 15 10 30;
+  --background-alt: 25 20 45;
+  --charcoal: 25 20 45;
+  --foreground: 240 235 255;
+  --foreground-muted: 190 180 220;
+}

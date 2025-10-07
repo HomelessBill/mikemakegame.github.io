@@ -4,6 +4,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CreditCard from '../components/CreditCard.astro';
 import PageSection from '../components/PageSection.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import HeroBanner from '../components/HeroBanner.astro';
+import GameCard from '../components/GameCard.astro';
 import '../styles/global.css';
 
 const majorCredits = [
@@ -31,45 +34,121 @@ const minorCredits = [
 
   <main id="content">
     <!-- Hero -->
-    <PageSection variant="hero" class="text-center py-16 md:py-20">
-      <h2 class="text-xl md:text-2xl mb-4">
-        Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo Buffalo buffalo buffalo.
-      </h2>
-      <p class="text-sm opacity-80">Serious technology. Stupid games.</p>
+    <HeroBanner />
+
+    <hr class="w-full border-0 h-0.5 bg-accent" />
+
+    <!-- Bricknosis -->
+    <PageSection id="games" variant="dark">
+      <GameCard
+        title="Bricknosis"
+        subtitle="Half idle brick breaker, half clicker fidget spinner"
+        status="coming-soon"
+        releaseInfo="Early Access February 2026"
+        steamUrl="https://store.steampowered.com/app/3767500"
+        description={`Break bricks to buy stuff to break more bricks. Vibe out to active full-screen gameplay - or pin it in a corner of your screen, pick some cool upgrades, and watch number go up. Click stuff, spawn balls, and choose synergistic upgrades to overcome increasingly challenging levels.
+
+Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD-havers, big number enthusiasts, fidget spinner enjoyers, Windows 95 screensaver aficionados, Twitch streamers, those in need of a quick hit of dopamine, and the people still waiting for the DVD logo to hit the corner of their TV.`}
+        features={[
+          "Click like mad or idleize your playstyle",
+          "Resize, rotate, customize, and pin it on top",
+          "Cutting edge graphics in 4K or 144p",
+          "Tons of upgrades and boatloads of levels",
+          "Progress to unleash game-changing roguelike modifiers",
+          "Sandbox mode for experimentation",
+        ]}
+      />
+
     </PageSection>
 
-    <hr class="w-full border-0 h-px bg-accent/20" />
-
-    <!-- Games -->
-    <PageSection id="games" variant="dark" class="text-center">
-      <h2 class="text-2xl sm:text-3xl font-display mb-6">Games</h2>
-      <p class="font-light max-w-3xl mx-auto">
-        Coming Soon™
-      </p>
-    </PageSection>
-
-    <hr class="w-full border-0 h-px bg-accent/20" />
+    <hr class="w-full border-0 h-0.5 bg-accent" />
 
     <!-- Consulting -->
-    <PageSection id="consulting" class="text-center">
-      <h2 class="text-2xl sm:text-3xl font-display mb-6">Consulting Services</h2>
-      <div class="max-w-3xl mx-auto">
-        <p class="font-light text-left mb-6">
-          I'm always happy to talk shop whether it's about engineering, people, or project management.
-          I've worked on consoles, certification, optimization, system architecture, Unreal Engine
-          (2.5, 3, 4, and 5), proprietary engines, archaic proprietary engines, online services,
-          multiplayer, game feel, leadership, management, growing an engineering team, well-run projects,
-          absolute dumpster fires, and plenty more.
-        </p>
-        <p class="opacity-75 mb-6">Let's chat.</p>
-        <a href="mailto:contact@mikemakegame.com"
-           class="inline-block px-6 py-3 bg-accent/90 hover:bg-accent text-background rounded-lg transition-colors duration-200">
-          Contact
-        </a>
+    <PageSection id="consulting">
+      <h2 class="text-2xl sm:text-3xl font-display mb-8 text-center">Consulting Services</h2>
+
+      <!-- Side by side layout -->
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <!-- Left: Description -->
+        <div class="space-y-4">
+          <p class="font-light leading-relaxed">
+            Need some help?
+
+            Whether you're an indie team getting started or a AAA developer shipping on consoles with a tight timeframe, I've got the experience to make an immediate impact.
+          </p>
+          <p class="font-light leading-relaxed">
+            With 15+ years shipping AAA titles, I've tackled everything from console certification to online services integration to managing teams through both smooth launches and absolute dumpster fires.
+          </p>
+          <div class="pt-4">
+            <a href="mailto:contact@mikemakegame.com"
+               class="inline-block px-6 py-3 bg-accent/90 hover:bg-accent text-background rounded-lg transition-colors duration-200 font-bold">
+              Let's Chat
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Expertise bullets -->
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-display mb-3 text-accent-bright">Technical Expertise</h3>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Unreal Engine (2.5, 3, 4, 5) & Proprietary Engines</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Console Certification & Platform Optimization</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Multiplayer Architecture & Online Services</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>System Architecture & Performance</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-display mb-3 text-accent-bright">Leadership Experience</h3>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Engineering Team Growth & Management</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Cross-Department Communication</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Strategic Planning & Crisis Management</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Project Rescue & Turnaround</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Platform/Technology Logos Section -->
+      <div class="border-t border-accent/20 pt-8">
+        <h3 class="text-sm uppercase tracking-wider text-center text-foreground-muted mb-6">Platforms & Technologies</h3>
+        <div class="grid grid-cols-4 md:grid-cols-8 gap-4">
+          {/* Placeholder for platform logos */}
+          {['PlayStation', 'Xbox', 'Switch', 'Steam', 'PC', 'Unreal', 'Unity', 'AWS'].map((platform) => (
+            <div class="aspect-square bg-background-alt rounded-lg flex items-center justify-center border border-accent/10 hover:border-accent/30 transition-colors">
+              <span class="text-xs text-foreground-muted opacity-50">{platform}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </PageSection>
 
-    <hr class="w-full border-0 h-px bg-accent/20" />
+    <hr class="w-full border-0 h-0.5 bg-accent" />
 
     <!-- About -->
     <PageSection id="about" variant="dark">
@@ -92,7 +171,7 @@ const minorCredits = [
       </div>
     </PageSection>
 
-    <hr class="w-full border-0 h-px bg-accent/20" />
+    <hr class="w-full border-0 h-0.5 bg-accent" />
 
     <!-- Credits -->
     <PageSection id="credits">
@@ -119,4 +198,5 @@ const minorCredits = [
   </main>
 
   <Footer />
+  <ThemeSwitcher />
 </Layout>
