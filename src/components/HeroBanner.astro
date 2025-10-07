@@ -1,36 +1,38 @@
 ---
-// Hero images with vertical offset for logo positioning
-// offset: percentage from top (50 = center, 30 = higher, 70 = lower)
-const bannerImages = [
-  { src: '/banners/midnight.jpg', offset: 50 },
-  { src: '/banners/lego-drive.jpg', offset: 40 },
-  { src: '/banners/xcom2.jpg', offset: 50 },
-  { src: '/banners/pga23.jpg', offset: 60 },
-  { src: '/banners/chimera.jpg', offset: 50 },
-  { src: '/banners/evolve.jpg', offset: 45 },
-];
+export interface Props {
+  text?: string;
+  typingSpeed?: number;
+  pauseDuration?: number;
+  splitIndex?: number;
+  firstColor?: string;
+  secondColor?: string;
+  loadingDotsSpeed?: number;
+  initialDelay?: number;
+}
+
+const {
+  text = '// Serious technology // Stupid games',
+  typingSpeed = 60,
+  pauseDuration = 750,
+  splitIndex = 23, // Index for both pause and color change
+  firstColor = 'text-accent-bright',
+  secondColor = 'text-accent',
+  loadingDotsSpeed = 250,
+  initialDelay = 1000
+} = Astro.props;
 ---
 
 <section class="relative h-[33vh] min-h-[250px] max-h-[350px] overflow-hidden">
-  <!-- Background images container -->
-  <div class="absolute inset-0">
-    {bannerImages.map((img, i) => (
-      <div
-        data-slide={i}
-        data-offset={img.offset}
-        class={`absolute inset-0 opacity-0 transition-opacity duration-1000 ${i === 0 ? 'opacity-100' : ''}`}
-      >
-        <img
-          src={img.src}
-          alt=""
-          class="w-full h-full object-cover"
-          style={`object-position: center ${img.offset}%`}
-          loading={i === 0 ? "eager" : "lazy"}
-        />
-        <!-- Gradient overlay for text readability -->
-        <div class="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background/90"></div>
-      </div>
-    ))}
+  <!-- Background image container -->
+  <div class="absolute inset-0 bg-black">
+    <img
+      src="/banners/hero-logo.jpg"
+      alt="Mike Make Game"
+      class="w-auto h-full object-contain mx-auto"
+      loading="eager"
+    />
+    <!-- Gradient overlay for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-background/50 via-background/30 to-background/80"></div>
   </div>
 
   <!-- Text content -->
@@ -38,43 +40,50 @@ const bannerImages = [
     <div class="text-center px-4">
       <!-- Loading animation that transitions to tagline -->
       <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold font-display drop-shadow-[0_6px_16px_rgba(0,0,0,1)]">
-        <span id="animated-text" class="inline-block">Loading</span>
+        <span id="animated-text"
+              data-text={text}
+              data-typing-speed={typingSpeed}
+              data-pause-duration={pauseDuration}
+              data-split-index={splitIndex}
+              data-first-color={firstColor}
+              data-second-color={secondColor}
+              data-dots-speed={loadingDotsSpeed}
+              data-initial-delay={initialDelay}
+              class="inline-block">Loading</span>
       </h2>
     </div>
   </div>
 </section>
 
 <script>
-  // Image rotation
-  const slides = document.querySelectorAll('[data-slide]');
-  let currentSlide = 0;
-
-  function nextSlide() {
-    slides[currentSlide].classList.remove('opacity-100');
-    slides[currentSlide].classList.add('opacity-0');
-
-    currentSlide = (currentSlide + 1) % slides.length;
-
-    slides[currentSlide].classList.remove('opacity-0');
-    slides[currentSlide].classList.add('opacity-100');
-  }
-
-  // Rotate images every 4 seconds
-  setInterval(nextSlide, 4000);
-
   // Text animation
   const textElement = document.getElementById('animated-text');
   const loadingText = 'Loading';
-  const finalText = 'Serious technology. Stupid games.';
 
-  // Animate dots faster
+  // Get configuration from data attributes
+  const finalText = textElement.dataset.text;
+  const typingSpeed = parseInt(textElement.dataset.typingSpeed);
+  const pauseDuration = parseInt(textElement.dataset.pauseDuration);
+  const splitIndex = parseInt(textElement.dataset.splitIndex);
+  const firstColor = textElement.dataset.firstColor;
+  const secondColor = textElement.dataset.secondColor;
+  const dotsSpeed = parseInt(textElement.dataset.dotsSpeed);
+  const initialDelay = parseInt(textElement.dataset.initialDelay);
+
+  // Convert text with line breaks for display
+  function formatText(text) {
+    if (!text) return '';
+    return text.replace(/\n/g, '<br>');
+  }
+
+  // Animate dots
   let dots = 0;
   const dotInterval = setInterval(() => {
     dots++;
     if (dots <= 3) {
       textElement.textContent = loadingText + '.'.repeat(dots);
     }
-  }, 250);
+  }, dotsSpeed);
 
   // After dots complete, start typewriter effect
   setTimeout(() => {
@@ -83,28 +92,72 @@ const bannerImages = [
     // Start overwriting from the beginning
     let currentText = loadingText + '...';
     let currentIndex = 0;
+    let isPaused = false;
+    let hasReachedSplit = false;
 
     const typeInterval = setInterval(() => {
       if (currentIndex < finalText.length) {
+        // Check if we just reached the split point for the first time
+        if (currentIndex === splitIndex && !hasReachedSplit && splitIndex >= 0) {
+          hasReachedSplit = true;
+
+          if (pauseDuration > 0) {
+            isPaused = true;
+            setTimeout(() => {
+              isPaused = false;
+            }, pauseDuration);
+            return;
+          }
+        }
+
+        // If we're still paused, wait
+        if (isPaused) {
+          return;
+        }
+
         // Build the new text character by character
         currentText = finalText.substring(0, currentIndex + 1) + currentText.substring(currentIndex + 1);
 
         // Apply colors to the text
-        const seriousPart = finalText.substring(0, 19); // "Serious technology."
-        const stupidPart = finalText.substring(19); // " Stupid games."
+        const firstPart = finalText.substring(0, splitIndex);
+        const secondPart = finalText.substring(splitIndex);
 
-        if (currentIndex < 19) {
-          textElement.innerHTML = `<span class="text-accent-bright">${currentText.substring(0, currentIndex + 1)}</span>${currentText.substring(currentIndex + 1)}`;
+        // Handle color split
+        if (splitIndex >= 0 && splitIndex < finalText.length) {
+          // Split is enabled
+          if (currentIndex < splitIndex) {
+            // Still typing the first part
+            const typedFirst = formatText(currentText.substring(0, currentIndex + 1));
+            const remaining = formatText(currentText.substring(currentIndex + 1));
+            textElement.innerHTML = `<span class="${firstColor}">${typedFirst}</span>${remaining}`;
+          } else {
+            // Typing the second part
+            const firstPart = formatText(finalText.substring(0, splitIndex));
+            const typedSecond = formatText(currentText.substring(splitIndex, currentIndex + 1));
+            const remaining = formatText(currentText.substring(currentIndex + 1));
+            textElement.innerHTML = `<span class="${firstColor}">${firstPart}</span><span class="${secondColor}">${typedSecond}</span>${remaining}`;
+          }
         } else {
-          textElement.innerHTML = `<span class="text-accent-bright">${seriousPart}</span><span class="text-accent">${currentText.substring(19, currentIndex + 1)}</span>${currentText.substring(currentIndex + 1)}`;
+          // No split - use first color only
+          const typed = formatText(currentText.substring(0, currentIndex + 1));
+          const remaining = formatText(currentText.substring(currentIndex + 1));
+          textElement.innerHTML = `<span class="${firstColor}">${typed}</span>${remaining}`;
         }
 
         currentIndex++;
       } else {
-        // Final state - ensure proper colors
-        textElement.innerHTML = `<span class="text-accent-bright">Serious technology.</span> <span class="text-accent">Stupid games.</span>`;
+        // Final state - use the actual text with proper split and formatting
+        if (splitIndex >= 0 && splitIndex < finalText.length) {
+          const firstPart = formatText(finalText.substring(0, splitIndex));
+          const secondPart = formatText(finalText.substring(splitIndex));
+          textElement.innerHTML = `<span class="${firstColor}">${firstPart}</span><span class="${secondColor}">${secondPart}</span>`;
+        } else {
+          // No split or invalid split index
+          textElement.innerHTML = `<span class="${firstColor}">${formatText(finalText)}</span>`;
+        }
+
         clearInterval(typeInterval);
       }
-    }, 60);
-  }, 1000);
+    }, typingSpeed);
+  }, initialDelay);
 </script>

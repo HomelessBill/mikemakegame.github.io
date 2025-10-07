@@ -1,4 +1,4 @@
-/* Default Theme - Laser */
+/* Default Theme - Soft laser with balanced text */
 :root {
   --accent: 255 0 100;
   --accent-muted: 200 0 80;
@@ -6,8 +6,8 @@
   --background: 20 0 10;
   --background-alt: 40 0 20;
   --charcoal: 40 0 20;
-  --foreground: 255 220 230;
-  --foreground-muted: 255 200 210;
+  --foreground: 255 238 243;
+  --foreground-muted: 238 210 220;
 }
 
 /* Neon Theme - Original default */
@@ -212,6 +212,18 @@
   --charcoal: 40 0 20;
   --foreground: 255 255 255;
   --foreground-muted: 220 220 220;
+}
+
+/* Laser Original - Pink-tinted text */
+[data-theme="laser-original"] {
+  --accent: 255 0 100;
+  --accent-muted: 200 0 80;
+  --accent-bright: 255 100 150;
+  --background: 20 0 10;
+  --background-alt: 40 0 20;
+  --charcoal: 40 0 20;
+  --foreground: 255 220 230;
+  --foreground-muted: 255 200 210;
 }
 
 /* Laser Headers - Pink headers, tinted text */

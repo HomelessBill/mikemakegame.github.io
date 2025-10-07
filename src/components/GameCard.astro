@@ -3,11 +3,12 @@ export interface Props {
   title: string;
   subtitle?: string;
   status?: 'coming-soon' | 'early-access' | 'released';
-  releaseInfo?: string;
   steamUrl?: string;
   trailer?: string;
   description?: string;
+  descriptionHeading?: string;
   features?: string[];
+  featuresHeading?: string;
   screenshots?: string[];
   coverImage?: string;
 }
@@ -16,11 +17,12 @@ const {
   title,
   subtitle = '',
   status = 'coming-soon',
-  releaseInfo,
   steamUrl,
   trailer,
   description,
+  descriptionHeading = 'About',
   features = [],
+  featuresHeading = 'Key Features',
   screenshots = [],
   coverImage
 } = Astro.props;
@@ -53,10 +55,6 @@ const statusBadges = {
         </a>
       )}
     </div>
-
-    {releaseInfo && (
-      <p class="text-sm text-foreground-muted mt-2">{releaseInfo}</p>
-    )}
   </div>
 
   <!-- Main content area - Side by side on desktop, stacked on mobile -->
@@ -90,7 +88,7 @@ const statusBadges = {
     <div class="md:col-span-2 space-y-6">
       {description && (
         <div>
-          <h4 class="text-lg font-display mb-3 text-accent-bright">About</h4>
+          <h4 class="text-lg font-display mb-3 text-accent-bright">{descriptionHeading}</h4>
           <div class="text-foreground-muted leading-relaxed text-sm space-y-3">
             {description.split('\n\n').map(paragraph =>
               paragraph.trim() && <p>{paragraph.trim()}</p>
@@ -101,7 +99,7 @@ const statusBadges = {
 
       {features.length > 0 && (
         <div>
-          <h4 class="text-lg font-display mb-3 text-accent-bright">Key Features</h4>
+          <h4 class="text-lg font-display mb-3 text-accent-bright">{featuresHeading}</h4>
           <ul class="space-y-2">
             {features.map(feature => (
               <li class="flex items-start gap-2 text-sm">

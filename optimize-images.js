@@ -155,6 +155,20 @@ async function processImages() {
     }
   }
 
+  // Process MikeMakeGame.png for hero banner
+  const heroPath = path.join('SourceArt', 'MikeMakeGame.png');
+  if (fs.existsSync(heroPath)) {
+    console.log('\n\nProcessing MikeMakeGame.png for hero banner...');
+
+    const heroOutput = path.join('public/banners', 'hero-logo.jpg');
+    await optimizeImage(heroPath, heroOutput, {
+      width: 1920,
+      height: 600,
+      quality: 90,
+      maxSize: 300
+    });
+  }
+
   console.log('\n✅ Image optimization complete!');
 }
 

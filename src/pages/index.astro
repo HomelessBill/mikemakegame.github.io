@@ -34,7 +34,17 @@ const minorCredits = [
 
   <main id="content">
     <!-- Hero -->
-    <HeroBanner />
+    <HeroBanner
+      text={`// Serious technology
+// Stupid games`}
+      typingSpeed={50}
+      pauseDuration={250}
+      splitIndex={22}
+      firstColor="text-accent-bright"
+      secondColor="text-accent"
+      loadingDotsSpeed={250}
+      initialDelay={1000}
+    />
 
     <hr class="w-full border-0 h-0.5 bg-accent" />
 
@@ -44,14 +54,15 @@ const minorCredits = [
         title="Bricknosis"
         subtitle="Half idle brick breaker, half clicker fidget spinner"
         status="coming-soon"
-        releaseInfo="Early Access February 2026"
         steamUrl="https://store.steampowered.com/app/3767500"
-        description={`Break bricks to buy stuff to break more bricks. Vibe out to active full-screen gameplay - or pin it in a corner of your screen, pick some cool upgrades, and watch number go up. Click stuff, spawn balls, and choose synergistic upgrades to overcome increasingly challenging levels.
+        descriptionHeading="Break bricks to buy stuff to break more bricks"
+        description={`Click stuff, spawn balls, and choose synergistic upgrades to overcome increasingly challenging levels. Vibe out to active full-screen gameplay - or pin it in a corner of your screen, pick some cool upgrades, and watch number go up.
 
-Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD-havers, big number enthusiasts, fidget spinner enjoyers, Windows 95 screensaver aficionados, Twitch streamers, those in need of a quick hit of dopamine, and the people still waiting for the DVD logo to hit the corner of their TV.`}
+Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD-havers, juice lovers, big number enthusiasts, fidget spinner enjoyers, Windows 95 screensaver aficionados, second screen addicts, those in need of a quick hit of dopamine, and the people still waiting for the DVD logo to hit the corner of their TV.`}
+        featuresHeading="Features and cool stuff"
         features={[
-          "Click like mad or idleize your playstyle",
-          "Resize, rotate, customize, and pin it on top",
+          "Click all the things or idleize your playstyle",
+          "Resize, rotate, customize, and pin it anywhere on your screen",
           "Cutting edge graphics in 4K or 144p",
           "Tons of upgrades and boatloads of levels",
           "Progress to unleash game-changing roguelike modifiers",
@@ -65,24 +76,27 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
 
     <!-- Consulting -->
     <PageSection id="consulting">
-      <h2 class="text-2xl sm:text-3xl font-display mb-8 text-center">Consulting Services</h2>
+      <h2 class="text-2xl sm:text-3xl font-display mb-8 text-center">Consulting</h2>
 
       <!-- Side by side layout -->
       <div class="grid md:grid-cols-2 gap-8 mb-8">
         <!-- Left: Description -->
         <div class="space-y-4">
           <p class="font-light leading-relaxed">
-            Need some help?
+            Need some help? Let's chat.
 
             Whether you're an indie team getting started or a AAA developer shipping on consoles with a tight timeframe, I've got the experience to make an immediate impact.
           </p>
           <p class="font-light leading-relaxed">
-            With 15+ years shipping AAA titles, I've tackled everything from console certification to online services integration to managing teams through both smooth launches and absolute dumpster fires.
+            In 15 years shipping AAA titles, I've tackled everything from console certification to online services integration to managing teams through both smooth launches and absolute dumpster fires.
           </p>
-          <div class="pt-4">
+          <p class="font-light leading-relaxed">
+            I specialize in cross-discipline coordination and making organizations run smoothly at any stage of development, but I'm right at home debugging in the bowels of any engine.
+          </p>
+          <div class="pt-4 text-center">
             <a href="mailto:contact@mikemakegame.com"
                class="inline-block px-6 py-3 bg-accent/90 hover:bg-accent text-background rounded-lg transition-colors duration-200 font-bold">
-              Let's Chat
+              Contact
             </a>
           </div>
         </div>
@@ -119,7 +133,7 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
-                <span>Cross-Department Communication</span>
+                <span>Cross-Discipline Communication</span>
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
@@ -137,13 +151,15 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
       <!-- Platform/Technology Logos Section -->
       <div class="border-t border-accent/20 pt-8">
         <h3 class="text-sm uppercase tracking-wider text-center text-foreground-muted mb-6">Platforms & Technologies</h3>
-        <div class="grid grid-cols-4 md:grid-cols-8 gap-4">
-          {/* Placeholder for platform logos */}
-          {['PlayStation', 'Xbox', 'Switch', 'Steam', 'PC', 'Unreal', 'Unity', 'AWS'].map((platform) => (
-            <div class="aspect-square bg-background-alt rounded-lg flex items-center justify-center border border-accent/10 hover:border-accent/30 transition-colors">
-              <span class="text-xs text-foreground-muted opacity-50">{platform}</span>
-            </div>
-          ))}
+        <div class="flex justify-center">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl">
+            {/* Placeholder for platform logos */}
+            {['PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X|S', 'Switch', 'Steam', 'Epic', 'Unreal'].map((platform) => (
+              <div class="aspect-square bg-background-alt rounded-lg flex items-center justify-center border border-accent/10 hover:border-accent/30 transition-colors p-6 md:p-8">
+                <span class="text-base md:text-lg text-foreground-muted opacity-50 text-center">{platform}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </PageSection>
@@ -155,16 +171,13 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
       <h2 class="text-2xl sm:text-3xl font-display mb-6 text-center">About Mike</h2>
       <div class="max-w-3xl mx-auto space-y-4">
         <p class="font-light">
-          I've spent the last 15 years in the games industry being a jack of all trades and working
-          with tons of great teams from Firaxis to Gearbox. I've enjoyed playing nearly every class
-          in the games industry in that time. After spending a lot of my recent years as tank, healer,
-          and support, I'm jonesing to play some DPS again. I helped everyone else ship their broken
-          messes, and now I'm excited to make my own.
+          I've spent 15 years in the games industry being a jack of all trades and working with tons of great teams from Firaxis to Gearbox. 
+          After spending my past several years in the industry helping everyone else ship their broken messes, I'm thoroughly excited to make my own.
         </p>
         <p class="font-light">
           I cut my teeth at Mass Media Games and learned from a host of 30-year industry veterans,
           working my way up from the baby Junior Engineer to the baby Lead Engineer. After getting
-          acquired by 2K I became an Engineering Director and Helldiver in Chief, tackling strategic
+          acquired by 2K I became an Engineering Director and Helldiver-in-Chief, tackling strategic
           planning, interdepartmental communication, systems design, and - when things got extra fun -
           hands-on engineering into the late night.
         </p>
@@ -178,7 +191,7 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
       <h2 class="font-display text-3xl mb-8 text-center">Credits</h2>
 
       <div class="mb-12">
-        <h3 class="font-display text-2xl mb-6 text-center">Major</h3>
+        <h3 class="font-display text-2xl mb-6 text-center">Major Contributions</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {majorCredits.map(credit => (
             <CreditCard {...credit} />
@@ -187,10 +200,12 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
       </div>
 
       <div>
-        <h3 class="font-display text-2xl mb-6 text-center">Minor</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-sm">
+        <h3 class="font-display text-2xl mb-6 text-center">Other Contributions</h3>
+        <div class="flex flex-wrap gap-2 justify-center">
           {minorCredits.map(credit => (
-            <div class="text-center md:text-left">{credit}</div>
+            <span class="px-4 py-2 bg-background-alt border border-accent/20 rounded-full text-sm hover:border-accent/40 transition-colors">
+              {credit}
+            </span>
           ))}
         </div>
       </div>
