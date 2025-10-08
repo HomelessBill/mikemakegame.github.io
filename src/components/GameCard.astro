@@ -11,6 +11,7 @@ export interface Props {
   featuresHeading?: string;
   screenshots?: string[];
   coverImage?: string;
+  logoImage?: string;
 }
 
 const {
@@ -24,7 +25,8 @@ const {
   features = [],
   featuresHeading = 'Key Features',
   screenshots = [],
-  coverImage
+  coverImage,
+  logoImage
 } = Astro.props;
 
 const statusBadges = {
@@ -35,9 +37,30 @@ const statusBadges = {
 ---
 
 <div class="game-card">
-  <!-- Header with title and status -->
+  <!-- Cover Image -->
+  {coverImage && (
+    <div class="mb-8 flex justify-center">
+      <img
+        src={coverImage}
+        alt={`${title} cover`}
+        class="rounded-lg max-w-2xl w-full h-auto border border-accent/20"
+      />
+    </div>
+  )}
+
+  <!-- Header with title/logo and status -->
   <div class="mb-8 text-center">
-    <h3 class="text-3xl md:text-4xl font-display mb-3">{title}</h3>
+    {logoImage ? (
+      <div class="mb-3 flex justify-center">
+        <img
+          src={logoImage}
+          alt={title}
+          class="max-w-2xl max-h-48 md:max-h-64 w-auto h-auto object-contain"
+        />
+      </div>
+    ) : (
+      <h3 class="text-3xl md:text-4xl font-display mb-3">{title}</h3>
+    )}
     {subtitle && <p class="text-xl text-foreground-muted mb-4">{subtitle}</p>}
 
     <div class="flex flex-wrap gap-3 justify-center items-center mb-2">
@@ -77,7 +100,6 @@ const statusBadges = {
                 <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
               </svg>
               <p class="text-sm">Trailer Coming Soon</p>
-              <p class="text-xs opacity-50 mt-1">Placeholder for YouTube/Steam embed</p>
             </div>
           </div>
         )}

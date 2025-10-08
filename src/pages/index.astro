@@ -10,16 +10,16 @@ import GameCard from '../components/GameCard.astro';
 import '../styles/global.css';
 
 const majorCredits = [
-  { title: 'Jak and Daxter (PS3)', role: 'Junior Engineer', company: 'Mass Media Games', image: '/credits/jak-daxter.jpg' },
-  { title: 'Evolve', role: 'Engineer', company: 'Mass Media Games', image: '/credits/evolve.jpg' },
+  { title: 'Project Ethos', role: 'Engineering Director', company: '2K Games', image: '/credits/project-ethos.jpg' },
+  { title: 'LEGO 2K Drive', role: 'Engineering Director', company: '2K Games', image: '/credits/lego-drive.jpg' },
+  { title: "Marvel's Midnight Suns", role: 'Engineering Director', company: '2K Games', image: '/credits/midnight.jpg' },
+  { title: 'PGA Tour 2K23', role: 'Engineering Director', company: '2K Games', image: '/credits/pga23.jpg' },
+  { title: 'XCOM: Chimera Squad', role: 'Lead Engineer', company: '2K Games', image: '/credits/chimera.jpg' },
+  { title: 'Carnival Games', role: 'Lead Engineer', company: 'Mass Media Games', image: '/credits/carnival.jpg' },
   { title: 'Mafia III', role: 'Engineer', company: 'Mass Media Games', image: '/credits/mafia3.jpg' },
   { title: 'XCOM 2', role: 'Engineer', company: 'Mass Media Games', image: '/credits/xcom2.jpg' },
-  { title: 'Carnival Games', role: 'Lead Engineer', company: 'Mass Media Games', image: '/credits/carnival.jpg' },
-  { title: 'XCOM: Chimera Squad', role: 'Lead Engineer', company: '2K Games', image: '/credits/chimera.jpg' },
-  { title: 'PGA Tour 2K23', role: 'Engineering Director', company: '2K Games', image: '/credits/pga23.jpg' },
-  { title: "Marvel's Midnight Suns", role: 'Engineering Director', company: '2K Games', image: '/credits/midnight.jpg' },
-  { title: 'LEGO 2K Drive', role: 'Engineering Director', company: '2K Games', image: '/credits/lego-drive.jpg' },
-  { title: 'Project Ethos', role: 'Engineering Director', company: '2K Games', image: '/credits/project-ethos.jpg' },
+  { title: 'Evolve', role: 'Engineer', company: 'Mass Media Games', image: '/credits/evolve.jpg' },
+  { title: 'Jak and Daxter (PS3)', role: 'Junior Engineer', company: 'Mass Media Games', image: '/credits/jak-daxter.jpg' },
 ];
 
 const minorCredits = [
@@ -52,20 +52,21 @@ const minorCredits = [
     <PageSection id="games" variant="dark">
       <GameCard
         title="Bricknosis"
-        subtitle="Half idle brick breaker, half clicker fidget spinner"
+        subtitle="Idle brick breaker / clicker fidget spinner"
         status="coming-soon"
         steamUrl="https://store.steampowered.com/app/3767500"
-        descriptionHeading="Break bricks to buy stuff to break more bricks"
-        description={`Click stuff, spawn balls, and choose synergistic upgrades to overcome increasingly challenging levels. Vibe out to active full-screen gameplay - or pin it in a corner of your screen, pick some cool upgrades, and watch number go up.
+        logoImage="/bricknosis-logo.png"
+        descriptionHeading="Break bricks to get cool stuff to break more bricks"
+        description={`Click stuff, spawn balls, and choose upgrades strategically to overcome increasingly challenging levels. Vibe out to active full-screen gameplay - or just pin it in a corner of your screen, pick some cool upgrades, and watch number go up. Reset your progress to enable game-changing modifiers that unlock new builds and ways to play.
 
-Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD-havers, juice lovers, big number enthusiasts, fidget spinner enjoyers, Windows 95 screensaver aficionados, second screen addicts, those in need of a quick hit of dopamine, and the people still waiting for the DVD logo to hit the corner of their TV.`}
-        featuresHeading="Features and cool stuff"
+Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting participants, juice lovers, big number enjoyers, fidget spinner aficionados, Windows 95 screensaver nostalgists, second screen addicts, those in desperate need of a quick hit of dopamine, and all the people still waiting for the DVD logo to hit the corner of the TV.`}
+        featuresHeading="Features and things"
         features={[
           "Click all the things or idleize your playstyle",
-          "Resize, rotate, customize, and pin it anywhere on your screen",
+          "Resize, rotate, customize, and pin anywhere on your screen",
           "Cutting edge graphics in 4K or 144p",
           "Tons of upgrades and boatloads of levels",
-          "Progress to unleash game-changing roguelike modifiers",
+          "Unlock upgrades, modifiers, cheats, and development bugs",
           "Sandbox mode for experimentation",
         ]}
       />
@@ -85,13 +86,13 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
           <p class="font-light leading-relaxed">
             Need some help? Let's chat.
 
-            Whether you're an indie team getting started or a AAA developer shipping on consoles with a tight timeframe, I've got the experience to make an immediate impact.
+            Whether you're an indie team getting started or a AAA publisher shipping on consoles with a tight timeframe, I've got the expertise to make an immediate impact.
           </p>
           <p class="font-light leading-relaxed">
-            In 15 years shipping AAA titles, I've tackled everything from console certification to online services integration to managing teams through both smooth launches and absolute dumpster fires.
+            In 15 years shipping AAA titles, I've tackled everything from console certification to online services integration to gameplay juice to managing teams through both smooth launches and absolute dumpster fires. I'm ready to jump in to your project and codebase quickly whether you're using the latest and greatest Unreal Engine or unearthing the tomb of an ancient, proprietary engine with comments in a foreign language.
           </p>
           <p class="font-light leading-relaxed">
-            I specialize in cross-discipline coordination and making organizations run smoothly at any stage of development, but I'm right at home debugging in the bowels of any engine.
+            I specialize in cross-discipline coordination and making organizations run smoothly at any stage of development, but I'm right at home debugging unfamiliar code deep in the bowels of an engine all night long to fix the last must-fix before submission.
           </p>
           <div class="pt-4 text-center">
             <a href="mailto:contact@mikemakegame.com"
@@ -122,6 +123,10 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
                 <span class="text-accent mt-0.5">▸</span>
                 <span>System Architecture & Performance</span>
               </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Hands-On Debugging</span>
+              </li>
             </ul>
           </div>
           <div>
@@ -142,6 +147,10 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
                 <span>Project Rescue & Turnaround</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
+                <span>Milestone & Submission Coordination</span>
               </li>
             </ul>
           </div>
@@ -171,15 +180,13 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
       <h2 class="text-2xl sm:text-3xl font-display mb-6 text-center">About Mike</h2>
       <div class="max-w-3xl mx-auto space-y-4">
         <p class="font-light">
-          I've spent 15 years in the games industry being a jack of all trades and working with tons of great teams from Firaxis to Gearbox. 
-          After spending my past several years in the industry helping everyone else ship their broken messes, I'm thoroughly excited to make my own.
+          I've spent 15 years in the games industry being a jack of all trades and working with tons of great teams including Firaxis, Visual Concepts, Hangar 13, and Gearbox.
+          After spending my past several years in the industry helping everyone else ship their beautiful broken messes, I'm thoroughly excited to make my own.
         </p>
         <p class="font-light">
-          I cut my teeth at Mass Media Games and learned from a host of 30-year industry veterans,
-          working my way up from the baby Junior Engineer to the baby Lead Engineer. After getting
-          acquired by 2K I became an Engineering Director and Helldiver-in-Chief, tackling strategic
-          planning, interdepartmental communication, systems design, and - when things got extra fun -
-          hands-on engineering into the late night.
+          I was forged by the 40-year industry veteran crew at Mass Media Games, growing from the baby Junior Engineer to the baby Lead Engineer and beyond.
+
+          At 2K I became an Engineering Director and Helldiver-in-Chief, tackling strategic planning, interdepartmental communication, systems design, and - when things got extra fun - hands-on engineering into the late night.
         </p>
       </div>
     </PageSection>
@@ -203,7 +210,7 @@ Perfect for idle gamers, clicker clickers, bored Zoom meeting participants, ADHD
         <h3 class="font-display text-2xl mb-6 text-center">Other Contributions</h3>
         <div class="flex flex-wrap gap-2 justify-center">
           {minorCredits.map(credit => (
-            <span class="px-4 py-2 bg-background-alt border border-accent/20 rounded-full text-sm hover:border-accent/40 transition-colors">
+            <span class="px-4 py-2 bg-background-alt border border-accent/20 rounded-lg text-sm hover:border-accent/40 transition-colors">
               {credit}
             </span>
           ))}
