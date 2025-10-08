@@ -7,6 +7,7 @@ import PageSection from '../components/PageSection.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import HeroBanner from '../components/HeroBanner.astro';
 import GameCard from '../components/GameCard.astro';
+import BackToTop from '../components/BackToTop.astro';
 import '../styles/global.css';
 
 const majorCredits = [
@@ -63,11 +64,12 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
         featuresHeading="Features and things"
         features={[
           "Click all the things or idleize your playstyle",
-          "Resize, rotate, customize, and pin anywhere on your screen",
+          "Resize, rotate, customize, and pin anywhere",
           "Cutting edge graphics in 4K or 144p",
           "Tons of upgrades and boatloads of levels",
           "Unlock upgrades, modifiers, cheats, and development bugs",
-          "Sandbox mode for experimentation",
+          "Sandbox mode for unhinged experimentation",
+          "Benchmark your computer with Dragon Mode",
         ]}
       />
 
@@ -221,4 +223,5 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
 
   <Footer />
   <ThemeSwitcher />
+  <BackToTop />
 </Layout>

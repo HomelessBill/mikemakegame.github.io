@@ -8,8 +8,9 @@
   .hover-accent { @apply hover:text-accent transition-colors duration-200; }
 }
 
-/* 2 Paragraph rhythm */
+/* 2 Paragraph rhythm & smooth scrolling */
 @layer base {
+  html { scroll-behavior: smooth; }
   p { margin-bottom: 1rem; line-height: 1.65; }
 }
 

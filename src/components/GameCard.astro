@@ -51,11 +51,11 @@ const statusBadges = {
   <!-- Header with title/logo and status -->
   <div class="mb-8 text-center">
     {logoImage ? (
-      <div class="mb-3 flex justify-center">
+      <div class="mb-3 flex justify-center px-4">
         <img
           src={logoImage}
           alt={title}
-          class="max-w-2xl max-h-48 md:max-h-64 w-auto h-auto object-contain"
+          class="w-full max-w-full sm:max-w-xl md:max-w-2xl max-h-32 sm:max-h-48 md:max-h-64 h-auto object-contain"
         />
       </div>
     ) : (
