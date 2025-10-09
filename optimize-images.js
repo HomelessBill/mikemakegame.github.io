@@ -11,6 +11,9 @@ const gameImages = [
   { name: 'mafia3', input: 'Mafia3.jpg' },
   { name: 'midnight', input: 'MidnightSuns.jpg' },
   { name: 'pga23', input: 'PGA2K23.jpg' },
+  { name: 'pga25', input: 'PGA2K25.jpg' },
+  { name: 'topspin25', input: 'PGA2K25.jpg' },
+  { name: 'new-tales', input: 'NewTalesFromTheBorderlands.png' },
   { name: 'project-ethos', input: 'ProjectETHOS.png' },
   { name: 'xcom2', input: 'XCOM2.jpg' },
   { name: 'chimera', input: 'XCOMChimeraSquad.jpg' }
@@ -85,7 +88,7 @@ async function processImages() {
   console.log('Starting image optimization...\n');
 
   // Create output directories
-  const dirs = ['public/credits', 'public/banners'];
+  const dirs = ['public/credits', 'public/banners', 'public/screenshots'];
   dirs.forEach(dir => {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
@@ -165,6 +168,34 @@ async function processImages() {
       width: 1920,
       height: 600,
       quality: 90,
+      maxSize: 300
+    });
+  }
+
+  // Create placeholder screenshots for Bricknosis
+  console.log('\n\nCreating placeholder screenshots...');
+  const screenshotSources = [
+    { name: 'screenshot1', input: 'LegoDrive.png' },
+    { name: 'screenshot2', input: 'MidnightSuns.jpg' },
+    { name: 'screenshot3', input: 'XCOMChimeraSquad.jpg' },
+    { name: 'screenshot4', input: 'XCOM2.jpg' },
+    { name: 'screenshot5', input: 'PGA2K23.jpg' }
+  ];
+
+  for (const img of screenshotSources) {
+    const inputPath = path.join('SourceArt', img.input);
+
+    if (!fs.existsSync(inputPath)) {
+      console.log(`  Skipping ${img.input} (not found)`);
+      continue;
+    }
+
+    console.log(`\nProcessing ${img.input} as ${img.name}:`);
+    const screenshotOutput = path.join('public/screenshots', `${img.name}.jpg`);
+    await optimizeImage(inputPath, screenshotOutput, {
+      width: 1280,
+      height: 720,
+      quality: 85,
       maxSize: 300
     });
   }

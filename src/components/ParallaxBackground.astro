@@ -1,0 +1,303 @@
+---
+// Parallax background - SCROLL-ONLY PARALLAX
+// - Main div handles scroll-based parallax transform
+// - ::before pseudo-element has static patterns (no CSS animations)
+// - Colors controlled by CSS custom properties
+---
+
+<div class="parallax-background" data-mode="mode5" aria-hidden="true"></div>
+
+<style>
+  .parallax-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Will be set dynamically by JS */
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    /* CSS custom properties for dynamic colors and settings */
+    --grid-bg: rgb(0, 0, 0);
+    --grid-line: rgba(255, 255, 255, 0.9);
+    --grid-scale: 121px;
+    --line-thickness: 1px;
+  }
+
+  .parallax-background.hidden {
+    opacity: 0 !important;
+  }
+
+  /* Pseudo-element layer for patterns (NO animations) */
+  .parallax-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+
+  /* Mode 1: SOLID COLOR */
+  .parallax-background[data-mode="mode1"]::before {
+    background: var(--grid-bg);
+  }
+
+  /* Mode 2: DOTS */
+  .parallax-background[data-mode="mode2"]::before {
+    background-color: var(--grid-bg);
+    background-image:
+      radial-gradient(circle at center, var(--grid-line) var(--line-thickness), transparent var(--line-thickness));
+    background-size: var(--grid-scale) var(--grid-scale);
+  }
+
+  /* Mode 3: STRIPES */
+  .parallax-background[data-mode="mode3"]::before {
+    background-color: var(--grid-bg);
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent calc(var(--grid-scale) / 2),
+        var(--grid-line) calc(var(--grid-scale) / 2),
+        var(--grid-line) calc(var(--grid-scale) / 2 + var(--line-thickness))
+      );
+  }
+
+  /* Mode 4: GRADIENT */
+  .parallax-background[data-mode="mode4"]::before {
+    background: radial-gradient(circle at center, var(--grid-line), var(--grid-bg));
+  }
+
+  /* Mode 5: GRID (DEFAULT) */
+  .parallax-background[data-mode="mode5"]::before {
+    background-color: var(--grid-bg);
+    background-image:
+      linear-gradient(var(--grid-line) var(--line-thickness), transparent var(--line-thickness)),
+      linear-gradient(90deg, var(--grid-line) var(--line-thickness), transparent var(--line-thickness));
+    background-size: var(--grid-scale) var(--grid-scale);
+    /* Offset by half the grid scale to center lines in squares */
+    background-position: calc(var(--grid-scale) / 2) calc(var(--grid-scale) / 2);
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-background {
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Subtle parallax scroll effect
+  let ticking = false;
+  const parallaxBg = document.querySelector('.parallax-background') as HTMLElement;
+  const STORAGE_KEY = 'mmg-parallax-enabled';
+  const MODE_STORAGE_KEY = 'mmg-parallax-mode';
+  let parallaxSpeed = parseFloat(localStorage.getItem('mmg-parallax-speed') || '0.3');
+
+  // SIMPLIFIED: Just make the background tall enough to always cover the page
+  // No complex synchronization - just oversized background with simple parallax movement
+  function updateBackgroundSize() {
+    if (!parallaxBg) return;
+
+    const documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    );
+
+    // Make background 150% of document height to ensure it always covers
+    // Being taller doesn't matter - it's behind content and doesn't affect scroll height
+    const bgHeight = documentHeight * 1.5;
+
+    console.log('[Parallax] Simple Height Calculation:', {
+      documentHeight,
+      bgHeight,
+      parallaxSpeed
+    });
+
+    parallaxBg.style.height = `${bgHeight}px`;
+  }
+
+  // SIMPLIFIED: Basic parallax - just move slower than scroll
+  function updateParallax() {
+    if (!parallaxBg) return;
+
+    const scrolled = window.scrollY;
+
+    // Simple parallax: background moves at (scroll * speed)
+    // Speed 0.3 means background moves 30% as fast as scroll
+    const yPos = -(scrolled * parallaxSpeed);
+
+    parallaxBg.style.transform = `translate3d(0, ${yPos}px, 0)`;
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  // Check if parallax is enabled (default: true)
+  function isParallaxEnabled(): boolean {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === null || stored === 'true';
+  }
+
+  // Get current mode (default: mode1)
+  function getCurrentMode(): string {
+    return localStorage.getItem(MODE_STORAGE_KEY) || 'mode1';
+  }
+
+  // Apply parallax state
+  function applyParallaxState() {
+    if (!parallaxBg) return;
+
+    if (isParallaxEnabled()) {
+      parallaxBg.classList.remove('hidden');
+    } else {
+      parallaxBg.classList.add('hidden');
+    }
+
+    // Apply mode
+    parallaxBg.setAttribute('data-mode', getCurrentMode());
+  }
+
+  // Listen for toggle events from debug button
+  window.addEventListener('parallax-toggle', () => {
+    const currentState = isParallaxEnabled();
+    localStorage.setItem(STORAGE_KEY, String(!currentState));
+    applyParallaxState();
+  });
+
+  // Listen for mode change events
+  window.addEventListener('parallax-mode-change', ((e: CustomEvent) => {
+    const mode = e.detail.mode;
+    localStorage.setItem(MODE_STORAGE_KEY, mode);
+    applyParallaxState();
+  }) as EventListener);
+
+  // Helper: Convert hex to rgb/rgba
+  function hexToRgb(hex: string, alpha?: number): string {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!result) return hex;
+    const r = parseInt(result[1], 16);
+    const g = parseInt(result[2], 16);
+    const b = parseInt(result[3], 16);
+    return alpha !== undefined ? `rgba(${r}, ${g}, ${b}, ${alpha})` : `rgb(${r}, ${g}, ${b})`;
+  }
+
+  // Listen for color change events
+  window.addEventListener('parallax-color-change', ((e: CustomEvent) => {
+    const { bgColor, lineColor } = e.detail;
+    if (parallaxBg) {
+      if (bgColor) {
+        const rgbColor = hexToRgb(bgColor);
+        parallaxBg.style.setProperty('--grid-bg', rgbColor);
+        localStorage.setItem('mmg-parallax-bg-color', bgColor);
+      }
+      if (lineColor) {
+        const rgbaColor = hexToRgb(lineColor, 0.9);
+        parallaxBg.style.setProperty('--grid-line', rgbaColor);
+        localStorage.setItem('mmg-parallax-line-color', lineColor);
+      }
+    }
+  }) as EventListener);
+
+  // Listen for settings changes
+  window.addEventListener('parallax-settings-change', ((e: CustomEvent) => {
+    const { gridScale, lineThickness, speed } = e.detail;
+    if (parallaxBg) {
+      if (gridScale !== undefined) {
+        parallaxBg.style.setProperty('--grid-scale', `${gridScale}px`);
+        localStorage.setItem('mmg-parallax-grid-scale', String(gridScale));
+      }
+      if (lineThickness !== undefined) {
+        parallaxBg.style.setProperty('--line-thickness', `${lineThickness}px`);
+        localStorage.setItem('mmg-parallax-line-thickness', String(lineThickness));
+      }
+      if (speed !== undefined) {
+        parallaxSpeed = speed;
+        localStorage.setItem('mmg-parallax-speed', String(speed));
+        updateBackgroundSize(); // Recalculate size when speed changes
+      }
+    }
+  }) as EventListener);
+
+  // Restore saved colors and settings
+  const savedBgColor = localStorage.getItem('mmg-parallax-bg-color');
+  const savedLineColor = localStorage.getItem('mmg-parallax-line-color');
+  const savedGridScale = localStorage.getItem('mmg-parallax-grid-scale');
+  const savedLineThickness = localStorage.getItem('mmg-parallax-line-thickness');
+
+  if (parallaxBg) {
+    if (savedBgColor) {
+      const rgbColor = hexToRgb(savedBgColor);
+      parallaxBg.style.setProperty('--grid-bg', rgbColor);
+    }
+    if (savedLineColor) {
+      const rgbaColor = hexToRgb(savedLineColor, 0.9);
+      parallaxBg.style.setProperty('--grid-line', rgbaColor);
+    }
+    if (savedGridScale) {
+      parallaxBg.style.setProperty('--grid-scale', `${savedGridScale}px`);
+    }
+    if (savedLineThickness) {
+      parallaxBg.style.setProperty('--line-thickness', `${savedLineThickness}px`);
+    }
+  }
+
+  // Apply initial state
+  applyParallaxState();
+
+  // Set initial background size
+  updateBackgroundSize();
+
+  // Update background size on window resize
+  window.addEventListener('resize', updateBackgroundSize);
+
+  // Only enable parallax if user hasn't requested reduced motion
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', requestTick, { passive: true });
+  }
+
+  // Recalculate on content changes (images loading, etc)
+  window.addEventListener('load', updateBackgroundSize);
+
+  // ROBUST SOLUTION: Use ResizeObserver to watch for ANY document height changes
+  // This catches: images loading, iframes loading, dynamic content, font loading, etc.
+  // Much more reliable than trying to manually track all possible height changes
+  let resizeTimeout: number;
+  const resizeObserver = new ResizeObserver(() => {
+    // Debounce to avoid excessive recalculations
+    clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(() => {
+      updateBackgroundSize();
+    }, 100);
+  });
+
+  // Watch the HTML element (includes everything - body, footer, etc.)
+  const htmlElement = document.documentElement;
+  if (htmlElement) {
+    resizeObserver.observe(htmlElement);
+  }
+
+  // Expose debug function globally
+  (window as any).debugParallax = () => {
+    console.log('[Parallax Debug] Current state:');
+    console.log('- Speed:', parallaxSpeed);
+    console.log('- Document height:', Math.max(document.body.scrollHeight, document.documentElement.scrollHeight));
+    console.log('- Background height:', parallaxBg?.style.height);
+    console.log('- Current transform:', parallaxBg?.style.transform);
+    console.log('- Scroll position:', window.scrollY);
+    console.log('- Max scroll:', Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) - window.innerHeight);
+    updateBackgroundSize();
+    console.log('[Parallax Debug] ✓ Recalculated!');
+  };
+
+  console.log('[Parallax] SIMPLIFIED mode initialized. Background = 150% of document height.');
+</script>

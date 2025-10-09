@@ -23,64 +23,65 @@ npm run build
 npm run preview
 ```
 
-## TODO List
+## Features
 
-### Mike's Remaining Asset Tasks
-- [ ] **Bricknosis Assets** (Priority: HIGH)
-  - [ ] Get YouTube or Steam trailer embed URL
-  - [ ] Capture 4-6 screenshots (16:9 aspect ratio, 1280x720 minimum)
-  - [ ] Optional: Create Bricknosis logo/header image to replace text title
+### Core Functionality
+- ✅ **Responsive Design** - Mobile-first layout that scales beautifully across all devices
+- ✅ **Parallax Background** - Simplified grid background with smooth scroll-based parallax effect
+- ✅ **Theme System** - 20+ color theme variations accessible via bottom-right switcher
+- ✅ **Themed Scrollbar** - Custom scrollbar that adapts to selected theme colors
+- ✅ **Lazy Loading** - Optimized image loading for better performance
+- ✅ **Smooth Scrolling** - Enhanced navigation with smooth scroll behavior
+- ✅ **Back-to-Top Button** - Fades in on scroll for easy navigation
 
-- [ ] **Logo Optimization** (Priority: MEDIUM)
-  - [ ] Optimize PNG logos while preserving transparency
-  - [ ] Create favicon from icon (16x16, 32x32, 192x192)
+### Design & Polish
+- ✅ **Hero Banner** - Animated typewriter effect with custom timing and colors (40vh on desktop)
+- ✅ **Game Section** - Steam-style layout with trailer, screenshot gallery, and description
+  - Horizontal scrollable screenshot gallery (shows 3, scrolls to 5)
+  - Click screenshots for fullscreen overlay (80% viewport)
+  - YouTube trailer with `?preview` URL parameter for testing
+- ✅ **Credits Section** - Theme-aware cards for major/minor contributions with copyright notice
+- ✅ **Consulting Section** - Two-column expertise showcase with platform placeholders
+- ✅ **About Section** - Professional bio with social links (LinkedIn, YouTube)
 
-- [ ] **Platform Logos** (Priority: LOW)
-  - [ ] Gather platform logos for Consulting section (PlayStation, Xbox, Steam, Unreal, etc.)
+### Performance
+- ✅ **Image Optimization** - 98% size reduction on all images
+  - Credit cards: All under 60KB (from 20MB total to 365KB)
+  - Hero banners: All under 273KB at 1920x600px
+  - Screenshots: All under 210KB at 1280x720px
+  - Auto-optimization script using Sharp
+- ✅ **Lazy Loading** - Deferred loading for below-the-fold images
+- ✅ **Preloading** - Critical assets preloaded for faster initial render
 
-### Today's Completed Updates
-- [x] **Image Optimization** - All game images optimized (98% size reduction!)
-  - [x] Credit cards: All under 60KB (from 20MB total to 365KB)
-  - [x] Hero banners: Created at 1920x600px, all under 261KB
-  - [x] Auto-optimization script created using Sharp
-- [x] **Bricknosis Content** - Updated with real game copy and features
-- [x] **Consulting Services** - Side-by-side layout with expertise bullets
-- [x] **Platform logo placeholders** - Grid layout ready for real logos
-- [x] **Multi-paragraph support** - GameCard now handles paragraph breaks
+## Special Features
 
-### Recent Updates
-- [x] Laser theme as default with 8 variants
-- [x] Bricknosis game section with 60/40 trailer/description layout
-- [x] Steam button with official SVG branding
-- [x] Header with split logo (icon + text)
-- [x] Enhanced hero text drop shadow (stronger readability)
+### Trailer Preview Mode
+Add `?preview` to the URL to show the YouTube trailer embed (e.g., `http://localhost:4321/?preview` or `https://mikemakegame.com/?preview`). Without the parameter, shows "Trailer Coming Soon" placeholder.
 
-### Upcoming Features
-- [ ] Add professional headshot to About section
-- [ ] Add LinkedIn link
-- [ ] Add favicon and touch icons
-- [ ] Add Open Graph image for social sharing
-- [ ] Implement trailer embed when available
-- [ ] Add real screenshots when ready
+### Theme Customization
+- 20+ built-in themes (laser variations, cyberpunk, synthwave, etc.)
+- Custom scrollbar colors that adapt to each theme
+- Persisted selection in localStorage
+- Accessible via bottom-right theme switcher button
 
-### Future Optimizations
-- [ ] Set up automated image processing with Sharp
-- [ ] Add WebP format with JPG fallback
-- [ ] Implement proper SEO meta tags
-- [ ] Add structured data for Google
-- [ ] Set up analytics
-- [ ] Performance audit and optimization
+## TODO
+
+### Content Needed
+- [ ] **Bricknosis Assets**
+  - [ ] Real screenshots (currently using placeholders from other games)
+  - [ ] Final trailer (currently using test video)
+- [ ] **Branding Assets**
+  - [ ] Favicon and touch icons (16x16, 32x32, 192x192)
+  - [ ] Professional headshot for About section
+  - [ ] Platform logos (PlayStation, Xbox, Steam, Unreal, etc.)
+
+### Future Enhancements
+- [ ] Scroll-triggered fade-in animations
+- [ ] WebP format with JPG fallback
+- [ ] Analytics integration
 - [ ] Cross-browser testing
 - [ ] Accessibility audit
-
-### Completed
-- [x] Fix hamburger menu on mobile
-- [x] Restructure with Astro components
-- [x] Theme system with Laser variations
-- [x] Fix section dividers
-- [x] Add credit card images
-- [x] Remove duplicate headings
-- [x] Update release date and Steam link
+- [ ] SEO optimization review
 
 ## Image Guidelines
 
@@ -97,6 +98,13 @@ npm run preview
 - **Max size**: 200KB
 - **Focus**: Center-crop with key artwork visible
 
+### Screenshots
+- **Dimensions**: 1280x720px (16:9 ratio)
+- **Format**: JPG
+- **Quality**: 85%
+- **Max size**: 300KB
+- **Usage**: Scrollable gallery + fullscreen overlay
+
 ## Directory Structure
 
 ```
@@ -107,9 +115,11 @@ npm run preview
 │   ├── pages/          # Page files (routes)
 │   └── styles/         # CSS and theme files
 ├── public/
-│   ├── credits/        # Game credit images
-│   └── hero/           # Hero banner images (to be created)
+│   ├── credits/        # Game credit images (600x340)
+│   ├── banners/        # Hero banner images (1920x600)
+│   └── screenshots/    # Game screenshots (1280x720)
 ├── SourceArt/          # Original high-res images
+├── optimize-images.js  # Image optimization script
 └── dist/               # Build output
 ```
 

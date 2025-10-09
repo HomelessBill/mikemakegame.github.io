@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import CreditCard from '../components/CreditCard.astro';
 import PageSection from '../components/PageSection.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
@@ -11,9 +10,11 @@ import BackToTop from '../components/BackToTop.astro';
 import '../styles/global.css';
 
 const majorCredits = [
+  { title: 'TopSpin 2K25', role: 'Engineering Director', company: '2K Games', image: '/credits/topspin25.jpg' },
   { title: 'Project Ethos', role: 'Engineering Director', company: '2K Games', image: '/credits/project-ethos.jpg' },
   { title: 'LEGO 2K Drive', role: 'Engineering Director', company: '2K Games', image: '/credits/lego-drive.jpg' },
   { title: "Marvel's Midnight Suns", role: 'Engineering Director', company: '2K Games', image: '/credits/midnight.jpg' },
+  { title: 'New Tales from the Borderlands', role: 'Engineering Director', company: '2K Games', image: '/credits/new-tales.jpg' },
   { title: 'PGA Tour 2K23', role: 'Engineering Director', company: '2K Games', image: '/credits/pga23.jpg' },
   { title: 'XCOM: Chimera Squad', role: 'Lead Engineer', company: '2K Games', image: '/credits/chimera.jpg' },
   { title: 'Carnival Games', role: 'Lead Engineer', company: 'Mass Media Games', image: '/credits/carnival.jpg' },
@@ -24,9 +25,9 @@ const majorCredits = [
 ];
 
 const minorCredits = [
-  'Civilization VI', 'Civilization VII', 'TopSpin 2K25', 'PGA Tour 2K25',
-  'The Quarry', 'New Tales from the Borderlands', 'Borderlands series',
-  'BioShock series', 'WWE series', 'Unannounced 2K Titles'
+  'Civilization VI', 'Civilization VII',
+  'The Quarry', 'Borderlands series',
+  'BioShock series', 'WWE series'
 ];
 ---
 
@@ -36,8 +37,8 @@ const minorCredits = [
   <main id="content">
     <!-- Hero -->
     <HeroBanner
-      text={`// Serious technology
-// Stupid games`}
+      text={`// Serious Technology
+// Stupid Games`}
       typingSpeed={50}
       pauseDuration={250}
       splitIndex={22}
@@ -53,24 +54,32 @@ const minorCredits = [
     <PageSection id="games" variant="dark">
       <GameCard
         title="Bricknosis"
-        subtitle="Idle brick breaker / clicker fidget spinner"
+        subtitle="Idle Brick Breaker / Clicker Fidget Spinner"
         status="coming-soon"
         steamUrl="https://store.steampowered.com/app/3767500"
         logoImage="/bricknosis-logo.png"
-        descriptionHeading="Break bricks to get cool stuff to break more bricks"
-        description={`Click stuff, spawn balls, and choose upgrades strategically to overcome increasingly challenging levels. Vibe out to active full-screen gameplay - or just pin it in a corner of your screen, pick some cool upgrades, and watch number go up. Reset your progress to enable game-changing modifiers that unlock new builds and ways to play.
+        descriptionHeading="Break bricks to earn stuff to buy things to break more bricks"
+        description={`Launch balls, click everything, and select upgrades to progress through increasingly challenging levels. Vibe out to hypnotic full-screen clicker gameplay - or pin it in a corner of your screen and idle to success. Push your limit by exchanging progress for game-changing modifiers that unlock new builds and ways to play.
 
-Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting participants, juice lovers, big number enjoyers, fidget spinner aficionados, Windows 95 screensaver nostalgists, second screen addicts, those in desperate need of a quick hit of dopamine, and all the people still waiting for the DVD logo to hit the corner of the TV.`}
-        featuresHeading="Features and things"
+Perfect for idle gamers, clicker clickers, big number enjoyers, bored Zoom meeting participants, fidget spinner aficionados, ADHD havers, Windows 95 screensaver nostalgists, second screen addicts, those in desperate need of a quick hit of dopamine, and all the people still waiting for the DVD logo to hit the corner of the TV.`}
+        featuresHeading="Features"
         features={[
           "Click all the things or idleize your playstyle",
           "Resize, rotate, customize, and pin anywhere",
           "Cutting edge graphics in 4K or 144p",
-          "Tons of upgrades and boatloads of levels",
           "Unlock upgrades, modifiers, cheats, and development bugs",
-          "Sandbox mode for unhinged experimentation",
+          "Sandbox Mode for unhinged experimentation",
           "Benchmark your computer with Dragon Mode",
         ]}
+        trailer="https://www.youtube.com/embed/_ws0QtAiiXQ"
+        screenshots={[
+          '/screenshots/screenshot1.jpg',
+          '/screenshots/screenshot2.jpg',
+          '/screenshots/screenshot3.jpg',
+          '/screenshots/screenshot4.jpg',
+          '/screenshots/screenshot5.jpg',
+        ]}
+        trailerBlurb=""
       />
 
     </PageSection>
@@ -91,17 +100,11 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
             Whether you're an indie team getting started or a AAA publisher shipping on consoles with a tight timeframe, I've got the expertise to make an immediate impact.
           </p>
           <p class="font-light leading-relaxed">
-            In 15 years shipping AAA titles, I've tackled everything from console certification to online services integration to gameplay juice to managing teams through both smooth launches and absolute dumpster fires. I'm ready to jump in to your project and codebase quickly whether you're using the latest and greatest Unreal Engine or unearthing the tomb of an ancient, proprietary engine with comments in a foreign language.
+            In 15 years shipping AAA titles, I've tackled everything from console certification to online services integration to gameplay mechanics to managing teams through both smooth launches and raging infernos. I'm ready to jump into your project and codebase quickly whether you're using the latest and greatest Unreal Engine or unearthing the ancient tomb of a proprietary engine with comments in a foreign language.
           </p>
           <p class="font-light leading-relaxed">
-            I specialize in cross-discipline coordination and making organizations run smoothly at any stage of development, but I'm right at home debugging unfamiliar code deep in the bowels of an engine all night long to fix the last must-fix before submission.
+            I specialize in cross-discipline coordination and making organizations run smoothly at any stage of development, but I'm right at home debugging unfamiliar code deep in the bowels of an engine to squash the last must-fix bug the night before final submission.
           </p>
-          <div class="pt-4 text-center">
-            <a href="mailto:contact@mikemakegame.com"
-               class="inline-block px-6 py-3 bg-accent/90 hover:bg-accent text-background rounded-lg transition-colors duration-200 font-bold">
-              Contact
-            </a>
-          </div>
         </div>
 
         <!-- Right: Expertise bullets -->
@@ -111,7 +114,7 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
-                <span>Unreal Engine (2.5, 3, 4, 5) & Proprietary Engines</span>
+                <span>Unreal Engine & Proprietary Engines</span>
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
@@ -123,11 +126,15 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
+                <span>AI Workflows & Automation</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="text-accent mt-0.5">▸</span>
                 <span>System Architecture & Performance</span>
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
-                <span>Hands-On Debugging</span>
+                <span>Hands-On Debugging & Engineering</span>
               </li>
             </ul>
           </div>
@@ -140,34 +147,42 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
-                <span>Cross-Discipline Communication</span>
+                <span>Cross-Discipline Communication & Coordination</span>
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
-                <span>Strategic Planning & Crisis Management</span>
+                <span>Strategic Planning & Risk Assessment</span>
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
-                <span>Project Rescue & Turnaround</span>
+                <span>Crisis Management & Project Rescue</span>
               </li>
               <li class="flex items-start gap-2 text-sm">
                 <span class="text-accent mt-0.5">▸</span>
-                <span>Milestone & Submission Coordination</span>
+                <span>Milestone & Submission Scheduling</span>
               </li>
             </ul>
           </div>
         </div>
       </div>
 
+      <!-- Contact Button -->
+      <div class="mt-12 text-center">
+        <a href="mailto:contact@mikemakegame.com"
+           class="inline-block px-8 py-4 bg-accent/90 hover:bg-accent text-background rounded-lg transition-colors duration-200 font-bold text-lg">
+          Contact
+        </a>
+      </div>
+
       <!-- Platform/Technology Logos Section -->
-      <div class="border-t border-accent/20 pt-8">
+      <div class="border-t border-accent/20 pt-8 mt-12">
         <h3 class="text-sm uppercase tracking-wider text-center text-foreground-muted mb-6">Platforms & Technologies</h3>
         <div class="flex justify-center">
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl">
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4 max-w-5xl">
             {/* Placeholder for platform logos */}
-            {['PlayStation 4', 'PlayStation 5', 'Xbox One', 'Xbox Series X|S', 'Switch', 'Steam', 'Epic', 'Unreal'].map((platform) => (
-              <div class="aspect-square bg-background-alt rounded-lg flex items-center justify-center border border-accent/10 hover:border-accent/30 transition-colors p-6 md:p-8">
-                <span class="text-base md:text-lg text-foreground-muted opacity-50 text-center">{platform}</span>
+            {['PlayStation', 'Xbox', 'Switch', 'Steam', 'Epic', 'Unreal', 'Unity', 'Godot'].map((platform) => (
+              <div class="aspect-square bg-background-alt rounded-lg flex items-center justify-center border border-accent/10 p-3 md:p-4">
+                <span class="text-xs md:text-sm text-foreground-muted opacity-50 text-center">{platform}</span>
               </div>
             ))}
           </div>
@@ -190,6 +205,32 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
 
           At 2K I became an Engineering Director and Helldiver-in-Chief, tackling strategic planning, interdepartmental communication, systems design, and - when things got extra fun - hands-on engineering into the late night.
         </p>
+
+        <!-- Social Links -->
+        <div class="pt-6 flex justify-center gap-4">
+          <a
+            href="https://www.linkedin.com/in/mikeanstine"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-background border border-accent/20 hover:border-accent/40 rounded-lg transition-colors text-sm"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a
+            href="https://www.youtube.com/@mikemakegame"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-background border border-accent/20 hover:border-accent/40 rounded-lg transition-colors text-sm"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+        </div>
       </div>
     </PageSection>
 
@@ -212,16 +253,21 @@ Perfect for clicker clickers, idle gamers, ADHD-havers, bored Zoom meeting parti
         <h3 class="font-display text-2xl mb-6 text-center">Other Contributions</h3>
         <div class="flex flex-wrap gap-2 justify-center">
           {minorCredits.map(credit => (
-            <span class="px-4 py-2 bg-background-alt border border-accent/20 rounded-lg text-sm hover:border-accent/40 transition-colors">
+            <span class="px-4 py-2 bg-background-alt border border-accent/20 rounded-lg text-sm">
               {credit}
             </span>
           ))}
         </div>
       </div>
+
+      <!-- Copyright Notice -->
+      <div class="mt-12 pt-8 border-t border-accent/10 text-center text-xs opacity-60">
+        &copy; {new Date().getFullYear()} Mike Make Game - imagery &copy; owners
+      </div>
     </PageSection>
   </main>
 
-  <Footer />
+
   <ThemeSwitcher />
   <BackToTop />
 </Layout>

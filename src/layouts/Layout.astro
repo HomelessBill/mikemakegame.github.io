@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ParallaxBackground from '../components/ParallaxBackground.astro';
 
 export interface Props {
   title: string;
@@ -80,6 +81,7 @@ const { title, description = "Company website for Mike Make Game" } = Astro.prop
   </head>
 
   <body>
+    <ParallaxBackground />
     <slot />
   </body>
 </html>
