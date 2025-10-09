@@ -172,14 +172,14 @@ async function processImages() {
     });
   }
 
-  // Create placeholder screenshots for Bricknosis
-  console.log('\n\nCreating placeholder screenshots...');
+  // Create screenshots for Bricknosis
+  console.log('\n\nProcessing screenshots...');
   const screenshotSources = [
-    { name: 'screenshot1', input: 'LegoDrive.png' },
-    { name: 'screenshot2', input: 'MidnightSuns.jpg' },
-    { name: 'screenshot3', input: 'XCOMChimeraSquad.jpg' },
-    { name: 'screenshot4', input: 'XCOM2.jpg' },
-    { name: 'screenshot5', input: 'PGA2K23.jpg' }
+    { name: 'screenshot1', input: 'Screenshot_01_Before.png' },
+    { name: 'screenshot2', input: 'Screenshot_02_After.png' },
+    { name: 'screenshot3', input: 'Screenshot_03_Vertical.png' },
+    { name: 'screenshot4', input: 'Screenshot_04_Tiny.png' },
+    { name: 'screenshot5', input: 'Screenshot_05_Dragon.png' }
   ];
 
   for (const img of screenshotSources) {
