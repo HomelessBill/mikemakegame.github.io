@@ -175,11 +175,11 @@ async function processImages() {
   // Create screenshots for Bricknosis
   console.log('\n\nProcessing screenshots...');
   const screenshotSources = [
-    { name: 'screenshot1', input: 'Screenshot_01_Before.png' },
-    { name: 'screenshot2', input: 'Screenshot_02_After.png' },
-    { name: 'screenshot3', input: 'Screenshot_03_Vertical.png' },
-    { name: 'screenshot4', input: 'Screenshot_04_Tiny.png' },
-    { name: 'screenshot5', input: 'Screenshot_05_Dragon.png' }
+    { name: 'screenshot1', input: '01_FullscreenVertical.png' },
+    { name: 'screenshot2', input: '02_FullscreenHorizontal.png' },
+    { name: 'screenshot3', input: '03_SecondScreenVertical.png' },
+    { name: 'screenshot4', input: '04_SecondScreenHorizontal.png' },
+    { name: 'screenshot5', input: '05_FullscreenVertical.png' }
   ];
 
   for (const img of screenshotSources) {

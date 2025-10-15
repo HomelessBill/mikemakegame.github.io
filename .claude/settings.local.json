@@ -6,7 +6,8 @@
       "Bash(npm run build:*)",
       "WebFetch(domain:github.com)",
       "Bash(mkdir:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(find \"C:/Users/Mike/Documents/Unreal Projects/mikemakegame.github.io\" -maxdepth 3 -type f ( -name \"*.js\" -o -name \"*.ts\" -o -name \"*.py\" ) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" ! -path \"*/.astro/*\")"
     ],
     "deny": [],
     "ask": []
