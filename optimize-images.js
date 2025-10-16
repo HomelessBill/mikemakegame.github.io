@@ -179,7 +179,7 @@ async function processImages() {
     { name: 'screenshot2', input: '02_FullscreenHorizontal.png' },
     { name: 'screenshot3', input: '03_SecondScreenVertical.png' },
     { name: 'screenshot4', input: '04_SecondScreenHorizontal.png' },
-    { name: 'screenshot5', input: '05_FullscreenVertical.png' }
+    { name: 'screenshot5', input: '05_Dragon.png' }
   ];
 
   for (const img of screenshotSources) {
