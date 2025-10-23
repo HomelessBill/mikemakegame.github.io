@@ -52,7 +52,7 @@ npm run preview
   - Auto-optimization script using Sharp
 - ✅ **Lazy Loading** - Deferred loading for below-the-fold images
 - ✅ **Preloading** - Critical assets preloaded for faster initial render
-
+ 
 ## Special Features
 
 ### Trailer Preview Mode
