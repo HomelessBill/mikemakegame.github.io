@@ -219,14 +219,11 @@ const statusBadges = {
 </div>
 
 <script>
-  // Check for preview parameter to show trailer
-  const urlParams = new URLSearchParams(window.location.search);
-  const showTrailer = urlParams.has('preview');
-
+  // Show trailer if available
   const trailerIframe = document.getElementById('trailer-iframe');
   const trailerPlaceholder = document.getElementById('trailer-placeholder');
 
-  if (showTrailer && trailerIframe) {
+  if (trailerIframe) {
     trailerIframe.classList.remove('hidden');
     if (trailerPlaceholder) {
       trailerPlaceholder.classList.add('hidden');
